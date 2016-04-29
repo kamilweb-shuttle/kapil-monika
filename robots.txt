@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /sitepanel
+Disallow: /assets
+Disallow: /uploaded_files
