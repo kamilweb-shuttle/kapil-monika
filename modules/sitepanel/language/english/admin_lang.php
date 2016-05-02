@@ -20,8 +20,8 @@ $lang['admin_mail_msg']       = "Mail sent Successfully...";
 $lang['forgot_msg']           = "Email Id does not exist in database";
 $lang['admin_reply_msg']      = "Enquiry reply sent Successfully...";
 $lang['pic_uploaded']         = 'Photos has been uploaded successfully.';
-$lang['pic_uploaded_err']	  	= 'Please upload at least one photo.';
-$lang['pic_delete']			  		= 'Photo has been deleted successfully.';
+$lang['pic_uploaded_err']     = 'Please upload at least one photo.';
+$lang['pic_delete']           = 'Photo has been deleted successfully.';
 
 $lang['child_to_deactivate']     =  "The selected record(s) has some sub-category/product.Please de-activate them first";
 $lang['child_to_activate']       =  "The selected record(s) has some sub-category/product.Please activate them first";
@@ -41,16 +41,16 @@ $lang['top_menu_list'] = array("Dashboard"=>"sitepanel/dashbord/",
 					 ),			
   
  "Product Management"=>array(
- 												"Manage Categories"=>"sitepanel/category/",
+ 			"Manage Categories"=>"sitepanel/category/",
                         "Manage Products"=>"sitepanel/products",
-												"Manage Color"=>"sitepanel/color",
-												"Manage Size"=>"sitepanel/size",
-							 					//"Manage Product Enquiry"=>"sitepanel/product_enquiry",
+			"Manage Color"=>"sitepanel/color",
+			"Manage Size"=>"sitepanel/size",
+			//"Manage Product Enquiry"=>"sitepanel/product_enquiry",
 							 				),
  
  "Orders Management"  =>array(
                       	"Order Management"=>"sitepanel/orders/" ,
-												"Shipping & COD"=>"sitepanel/orders/shipping_cod" ,
+		       #"Shipping & COD"=>"sitepanel/orders/shipping_cod" ,
 					 						),											
 							 					  
  "Manage Enquiry"  =>array(
@@ -63,13 +63,13 @@ $lang['top_menu_list'] = array("Dashboard"=>"sitepanel/dashbord/",
 					  					 
  "Other Management"=>array(           
                     	"Static Pages"=>"sitepanel/staticpages/", 
-											"Manage Banner"=>"sitepanel/banners/", 
-											"Manage Testimonials"=>"sitepanel/testimonial/",
-											"Manage Faq"=>"sitepanel/faq/", 
-											"Manage Location"=>"sitepanel/zip_location/",
-											"Manage Courier Company"=>"sitepanel/courier_company/",
-					   					"Manage  Meta Tags"=>"sitepanel/meta/"   ,
-					   					"Admin Settings"=>"sitepanel/setting/"                      
+			"Manage Banner"=>"sitepanel/banners/", 
+			#"Manage Testimonials"=>"sitepanel/testimonial/",
+			"Manage Faq"=>"sitepanel/faq/", 
+			#"Manage Location"=>"sitepanel/zip_location/",
+			#"Manage Courier Company"=>"sitepanel/courier_company/",
+			"Manage  Meta Tags"=>"sitepanel/meta/"   ,
+			"Admin Settings"=>"sitepanel/setting/"                      
                     ),
                     
                     

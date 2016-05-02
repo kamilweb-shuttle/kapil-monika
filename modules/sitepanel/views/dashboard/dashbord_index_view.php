@@ -23,14 +23,14 @@
                 <td colspan="2"><a href="<?php echo base_url();?>sitepanel/upload_media?action=delete" class="upload_media"><strong>Upload Bulk Images to server</strong></a></td>
               </tr>
               <tr><td colspan="2">&nbsp;</td></tr>
-              <tr>
+              <!--tr>
                 <td><strong>Total Revenue in (<?php echo date('Y'); ?>) :</strong> </td>
                 <td><strong><?php echo  display_price($total_rev_year); ?></strong></td>
               </tr>
               <tr>
                 <td><strong>Total Revenue : </strong></td>
                 <td><strong><?php echo  display_price($total_rev); ?></strong></td>
-              </tr>
+              </tr-->
               <tr><td colspan="2">&nbsp;</td></tr>
               <tr>
                 <td>Total Enquiry : <?php echo  $total_enquiry; ?></td>

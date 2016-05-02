@@ -153,7 +153,7 @@ class Banners extends Admin_Controller
 		$postions_arr_key = array();
 		
 		$section = $this->input->get_post('banner_section');
-		
+		//print_r($ban_section_positions);die;
 		if(!empty($section))
 		{
 			

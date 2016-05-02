@@ -5,7 +5,7 @@ class MY_Controller extends CI_Controller
 	
 	public $spamwords = array(); 
 	public $has_spamword;
-    public $admin_info;
+        public $admin_info;
 	public $meta_info;
 	
 	public function __construct()

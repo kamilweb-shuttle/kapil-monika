@@ -24,13 +24,15 @@ class Pages extends Public_Controller
 	
 		
 	public function contactus()
-	{			    
-		$this->form_validation->set_rules('name','First Name','trim|alpha|required|max_length[30]');
-		$this->form_validation->set_rules('email','Email','trim|required|valid_email|max_length[80]');
-		$this->form_validation->set_rules('phone_number','Phone','trim|max_length[20]');			
+	{	
+               echo "<pre>";
+               print_r($this->input->post());die;
+		$this->form_validation->set_rules('customer_name','Name','trim|alpha|required|max_length[30]');
+		$this->form_validation->set_rules('customer_mail','Email','trim|required|valid_email|max_length[80]');
+		$this->form_validation->set_rules('subject','Subject','trim|max_length[20]');			
 		$this->form_validation->set_rules('mobile_number','Mobile_number','trim|required|max_length[20]');	
-		$this->form_validation->set_rules('description','Message','trim|required|max_length[8500]');		
-		$this->form_validation->set_rules('verification_code','Verification code','trim|required|valid_captcha_code');
+		$this->form_validation->set_rules('comments','Message','trim|required|max_length[8500]');		
+		//$this->form_validation->set_rules('verification_code','Verification code','trim|required|valid_captcha_code');
 		
 		
 		if($this->form_validation->run()==TRUE)
@@ -48,7 +50,7 @@ class Pages extends Public_Controller
 			$this->pages_model->safe_insert('wl_enquiry',$posted_data,FALSE); 
 			
 			/********* Send  mail to admin ***********/
-			$fullname			=$this->input->post('name');
+			$fullname =$this->input->post('name');
 			$admin_email  = get_site_email();
 			$content    	=  get_content('wl_auto_respond_mails','5');	
 			$body       	=  $content->email_content;	
@@ -284,7 +286,20 @@ class Pages extends Public_Controller
 		$data['heading_title'] = "Thanks";			
 		$this->load->view('pages/thanks',$data);	
 	}
+        public function whowear()
+	{
+		$data['heading_title'] = "Whowear";			
+		$this->load->view('pages/whowear',$data);	
+	}
 	
+         
+        public function media()
+	{
+		$data['heading_title'] = "Media";			
+		$this->load->view('pages/media',$data);	
+	}
+        
+        
 	public function order_tracking()
 	{
 		$data['track'] = '';

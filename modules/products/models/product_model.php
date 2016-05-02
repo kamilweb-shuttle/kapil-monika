@@ -5,17 +5,17 @@ class Product_model extends MY_Model
 		 
 	public function get_products($limit='10',$offset='0',$param=array()){
 		$category_id		=   @$param['category_id'];
-		$status			    =   @$param['status'];	
-		$productid			=   @$param['productid'];
-		$orderby				=		@$param['orderby'];	
-		$where			    =		@$param['where'];	
-		$color			    =		@$param['color'];	
-		$size			    	=		@$param['size'];
-		$price		    	=		@$param['price'];	
-		$hot			    	=		@$param['hot'];
-		$featured	    	=		@$param['featured'];	
-		$keyword				=   trim($this->input->get_post('keyword',TRUE));						
-		$keyword				=   $this->db->escape_str($keyword);
+		$status			=   @$param['status'];	
+		$productid              =   @$param['productid'];
+		$orderby		=   @$param['orderby'];	
+		$where			=   @$param['where'];	
+		$color			=   @$param['color'];	
+		$size			=   @$param['size'];
+		$price		    	=   @$param['price'];	
+		$hot			=   @$param['hot'];
+		$featured	    	=   @$param['featured'];	
+		$keyword		=   trim($this->input->get_post('keyword',TRUE));						
+		$keyword		=   $this->db->escape_str($keyword);
 		
 		if(!empty($color)){
 			$this->db->where("wlp.color_ids IN ($color)");
@@ -116,13 +116,13 @@ class Product_model extends MY_Model
 		$res_data =  array();
 		$condtion = ($productId!='') ? "status ='1' AND product_id = '$productId' ":"status ='1'";
 		$fetch_config = array(
-													'condition'=>$condtion,
-													'order'=>"id DESC",
-													'limit'=>$limit,
-													'start'=>$start,							 
-													'debug'=>FALSE,
-													'return_type'=>"array"							  
-												 );		
+					'condition'=>$condtion,
+					'order'=>"id DESC",
+					'limit'=>$limit,
+					'start'=>$start,							 
+					'debug'=>FALSE,
+					'return_type'=>"array"							  
+					);		
 		$result = $this->findAll('wl_products_related',$fetch_config);
 		if( is_array($result) && !empty($result) )
 		{
@@ -138,7 +138,7 @@ class Product_model extends MY_Model
 	  $id = (int) $id;
 	  if($id>0){
 			$posted_data = array(
-				'products_viewed'=>($counter+1)
+			'products_viewed'=>($counter+1)
 			);
 			$where = "products_id = '".$id."'"; 				
 		  $this->category_model->safe_update('wl_products',$posted_data,$where,FALSE);	
@@ -186,9 +186,9 @@ class Product_model extends MY_Model
 	} 
 		
 	public function related_sizes($param=array()){
-		$where			=	@$param['where'];
+          $where			=   @$param['where'];
 	  $limit			=   @$param['limit'];
-	  $offset			=	@$param['offset'];	
+	  $offset			=   @$param['offset'];	
 
 	  $query_size = "SELECT SQL_CALC_FOUND_ROWS wls.size_name,wls.size_id,wls.status as size_status FROM wl_sizes as wls WHERE wls.status!='2' AND ";
 		if($where!=''){

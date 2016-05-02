@@ -78,7 +78,7 @@
 	<script src="<?php echo base_url(); ?>/assets/designer/bootstrap/js/bootstrap.min.js"></script>
 	   <script type="text/javascript">
     $(document).ready(function(){
-        $("#myModal").modal('show');
+       // $("#myModal").modal('show');
     });
 </script>
 	<script src="<?php echo base_url(); ?>/assets/designer/bootstrap/js/bootstrap-hover-dropdown.min.js"></script>

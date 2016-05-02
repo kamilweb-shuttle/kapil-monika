@@ -65,7 +65,7 @@
 				<td width="72%" align="left">
         	<div id="ban_postion">
         	<?php echo banner_postion_drop_down('banner_position',$this->input->post('banner_position'),$this->input->post('section'));?>
-          </div>
+                </div>
 					<!--<select name="banner_position" >
 						<option value="">Select position</option>
 						<?php 

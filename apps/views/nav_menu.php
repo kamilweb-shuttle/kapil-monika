@@ -1,3 +1,18 @@
+<?php 
+$this->load->helper('banner');
+//trace($this->meta_info);
+if(isset($this->meta_info['entity_id'])){
+	$catID = (int) $this->meta_info['entity_id'];
+	$metaType = $this->meta_info['page_url'];
+}
+else{
+	$catID = "";
+	$metaType="";
+}
+?>
+
+
+
 <nav class="navbar navbar-default navbar-main navbar-main-slide" role="navigation">
     <div class="container">
         <div class="navbar-header">
@@ -10,10 +25,16 @@
             <li class="search"><a href="javascript:void(0);" data-toggle="modal" data-target=".bs-example-modal-lg"><i class="fa fa-search"></i></a></li>
         </ul>
         <div class="navbar-collapse collapse">
+            
+            
+            <!-- nav bar starts -->
             <ul class="nav navbar-nav pull-right">
-                <li><a href="index.html">Home</a></li>
+                
+                
+                
+                <li> <a href="<?php echo base_url(); ?>" <?php if($catID <=0 && $metaType == 'home'){ echo 'class="act"'; } ?>><img src="<?php echo theme_url(); ?>images/home-ico.png" class="Home" alt="">Home</a> </li>
 
-                </li>
+              <!--category nav bar starts -->
                 <li class="dropdown megamenu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Category</a>
                 <div class="dropdown-menu">
@@ -88,14 +109,18 @@
                     </div>
                 </div><!-- -->
                 </li>
-                <li><a href="about-us.html">Designer Profile</a>
+            <!--category navbar ends -->
+                
+                
+                
+                
+                
+                <li> <a href="<?php echo base_url(); ?>aboutus" <?php if($catID <=0 && $metaType == 'aboutus'){ echo 'class="act"'; } ?>>Designer Profile</a> </li>
+                
+                <li> <a href="<?php echo base_url(); ?>pages/whowear" <?php if($catID <=0 && $metaType == 'whowear'){ echo 'class="act"'; } ?>>Who's wearing K&M </a> </li>
+               <li> <a href="<?php echo base_url(); ?>pages/media" <?php if($catID <=0 && $metaType == 'whowear'){ echo 'class="act"'; } ?>>Media </a> </li>
 
-                </li>
-                <li><a href="whowear.html"> Who's wearing K&M </a></li>
-
-                <li><a href="media.html"> Media </a></li>
-
-                <li ><a href="page-contact1.html">Contact</a>
+                <li> <a href="<?php echo base_url(); ?>contactus" <?php if($catID <=0 && $metaType == 'contactus'){ echo 'class="act"'; } ?>>Contact</a> </li>
 
                 </li>
             </ul>

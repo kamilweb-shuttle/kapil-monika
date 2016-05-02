@@ -1,15 +1,37 @@
 <?php $this->load->view("top_application");?>
 <div role="main" class="main">
 			<!-- Begin Main Slide -->
+                        <?php
+                        $sliders_path= $this->db->query("select banner_image from wl_banners where banner_page='index' and banner_position='Index Middle Banner' ")->result(); 
+                        ?>
+                        
+                      
+                        
+                        
 			<section class="main-slide">
 				<div id="owl-main-demo" class="owl-carousel main-demo">
-					<div class="item" id="item1"><img src="<?php echo base_url(); ?>/assets/designer/images/content/slides/slider1.jpg" class="img-responsive" alt="Photo">
-						
+                                    <?php   
+                                    if(count($sliders_path) <= 0){
+                                    ?>
+                        
+					<div class="item" id="item1">
+                                            <img src="<?php echo base_url(); ?>/assets/designer/images/content/slides/slider1.jpg" class="img-responsive" alt="Photo">
 					</div>
-					<div class="item" id="item2"><img src="<?php echo base_url(); ?>/assets/designer/images/content/slides/slider2.jpg" class="img-responsive" alt="Photo">
-						
+					<div class="item" id="item2">
+                                            <img src="<?php echo base_url(); ?>/assets/designer/images/content/slides/slider2.jpg" class="img-responsive" alt="Photo">
 					</div>
-					
+                                    <?php }else{ 
+                                        foreach( $sliders_path as $slider_path){
+                                        ?>
+                                    
+                                    <div class="item" id="item1">
+                                     <img src="<?php echo base_url(); ?>uploaded_files/banner/<?php echo $slider_path->banner_image ?>" class="img-responsive" alt="Photo">
+				    </div>
+                                    <?php 
+                                        }
+                                    }  
+                                    
+                                   ?>			
 				</div>
 			</section>
 			<!-- End Main Slide -->
@@ -18,7 +40,7 @@
 			<section class="products-slide">
 				<div class=" col-md-12 whats-new">
 				
-					 <img src="<?php echo base_url(); ?>/assets/designer/images/whats-new.jpg" width="100%" alt="EXPLORE OUR NEW COLLECTION"  >
+			<img src="<?php echo base_url(); ?>/assets/designer/images/whats-new.jpg" width="100%" alt="EXPLORE OUR NEW COLLECTION"  >
 			 <div class="content-section">
 
                 <h3>new collection<span class="content-bdr"></span></h3>

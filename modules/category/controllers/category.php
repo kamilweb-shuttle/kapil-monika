@@ -96,9 +96,9 @@ class Category extends Public_Controller
 		$condtion['orderby']    = 'products_id asc';
 		$page_title             = "Product Lists";
 		
-		$color        					= $this->input->post('color');
-		$size        						= $this->input->post('size');
-		$price       						= $this->input->post('price');
+		$color = $this->input->post('color');
+		$size  = $this->input->post('size');
+		$price = $this->input->post('price');
 		
 		if(!empty($color)){
 			$colors = implode(',',$color);

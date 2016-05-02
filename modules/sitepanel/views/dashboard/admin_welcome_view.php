@@ -1,8 +1,9 @@
 <div style="margin-top:10px;">    
         
              <?php
-			
+             	
               $menu_array=lang('top_menu_list');
+             
 			  $top_menu_icon=lang('top_menu_icon');
 			  
 			  if(array_key_exists('Dashboard',$menu_array))
