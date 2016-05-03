@@ -97,6 +97,20 @@
 	<script src="<?php echo base_url(); ?>/assets/designer/js/theme.plugins.js"></script>
 	<script src="<?php echo base_url(); ?>/assets/designer/js/theme.js"></script>
 	
+  	<script>
+	$(document).on('click', '.panel-heading span.clickable', function(e){
+         var $this = $(this);
+	if(!$this.hasClass('panel-collapsed')) {
+		$this.parents('.panel').find('.panel-body').slideUp();
+		$this.addClass('panel-collapsed');
+		$this.find('i').removeClass('fa fa-minus').addClass('fa fa-plus');
+	} else {
+		$this.parents('.panel').find('.panel-body').slideDown();
+		$this.removeClass('panel-collapsed');
+		$this.find('i').removeClass('fa fa-plus').addClass('fa fa-minus');
+	}
+        });
+	</script>
 	
 	
 </body>

@@ -53,7 +53,8 @@ class Products extends Public_Controller
 		$data['page_links']    = front_pagination("$base_url",$config['total_rows'],$config['per_page'],$page_segment);	 						
 		$data['heading_title'] = $page_title;
 		$data['res']           = $res_array; 
-		$data['cat_res'] = $cat_res;				
+		$data['cat_res'] = $cat_res;	
+               
 		$this->load->view('products/view_product_listing',$data);
 	}
 	

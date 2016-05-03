@@ -72,17 +72,26 @@ else{
 
                             </ul>
                         </div>
+                        <?php 
+                        $main_catagories=$this->db->query('select category_name,category_id from wl_categories where parent_id=0')->result();
+                        foreach($main_catagories as $main_category){
+                        ?>    
                         <div class="col-md-2 menu-column">
-                            <h3>Man</h3>
+                            <h3><?php echo  $main_category->category_name; ?></h3>
                             <ul class="list-unstyled sub-menu">
-                                <li><a href="shop-sidebar.html">Jackets</a></li>
+                                <?php 
+                                $sub_categories=$this->db->query("select category_name,category_id,friendly_url from wl_categories where parent_id='".$main_category->category_id."'  ")->result();
+                                 foreach($sub_categories as $sub_category){
+                                ?>   
+                                   <li><a href="<?php echo site_url()."".$sub_category->friendly_url;  ?>"><?php echo $sub_category->category_name; ?></a></li>
 
-                                <li><a href="shop-sidebar.html">Suits</a></li>
+                                 <?php } ?>
 
                             </ul>
                         </div>
+                            
 
-                        <div class="col-md-2 menu-column">
+                        <!--div class="col-md-2 menu-column">
                             <h3>Woman</h3>
                             <ul class="list-unstyled sub-menu">
                                 <li><a href="shop-sidebar.html">Jewellery</a></li>
@@ -90,7 +99,9 @@ else{
                                 <li><a href="shop-sidebar.html">Lehnga</a></li>
 
                             </ul>
-                        </div>
+                        </div-->
+                      <?php    } ?>   
+                            
                         <div class="col-sm-4 hidden-sm hidden-xs menu-column">
                             <h3>Explore new collection</h3>
                             <ul class="list-unstyled sub-menu list-md-pro">
