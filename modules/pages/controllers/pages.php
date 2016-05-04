@@ -3,10 +3,11 @@ class Pages extends Public_Controller
 {
 
 	public function __construct() {
-	
+	           
 			parent::__construct(); 
 			$this->load->helper(array('file','category/category','currency'));	 
 			$this->load->library(array('Dmailer'));	
+                        $this->load->library(array('mailer'));	
 			$this->load->model(array('pages/pages_model'));
 			$this->form_validation->set_error_delimiters("<div class='required'>","</div>");
 			$this->page_section_ct = 'static';
@@ -24,13 +25,17 @@ class Pages extends Public_Controller
 	
 		
 	public function contactus()
-	{	
-               echo "<pre>";
-               print_r($this->input->post());die;
+	{
+            
+           
+            
+            
+             //  echo "<pre>";
+              // print_r($this->input->post()); 
 		$this->form_validation->set_rules('customer_name','Name','trim|alpha|required|max_length[30]');
 		$this->form_validation->set_rules('customer_mail','Email','trim|required|valid_email|max_length[80]');
 		$this->form_validation->set_rules('subject','Subject','trim|max_length[20]');			
-		$this->form_validation->set_rules('mobile_number','Mobile_number','trim|required|max_length[20]');	
+		$this->form_validation->set_rules('mobile_number','Mobile Number','trim|required|max_length[20],|numeric');	
 		$this->form_validation->set_rules('comments','Message','trim|required|max_length[8500]');		
 		//$this->form_validation->set_rules('verification_code','Verification code','trim|required|valid_captcha_code');
 		
@@ -39,49 +44,50 @@ class Pages extends Public_Controller
 		{			
 							
 			$posted_data=array(				
-				'first_name'    => $this->input->post('name'),
+				'first_name'    => $this->input->post('customer_name'),
 				'last_name'     => '',
-				'email'         => $this->input->post('email'),
-				'phone_number'  => $this->input->post('phone_number'),
+				'email'         => $this->input->post('customer_mail'),
+				'phone_number'  => $this->input->post('subject'),
 				'mobile_number' => $this->input->post('mobile_number'),
-				'message'       => $this->input->post('description'),	
+				'message'       => $this->input->post('verification_code'),	
 				'receive_date'     =>$this->config->item('config.date.time')
 			);
 			$this->pages_model->safe_insert('wl_enquiry',$posted_data,FALSE); 
 			
 			/********* Send  mail to admin ***********/
-			$fullname =$this->input->post('name');
+			$fullname =$this->input->post('customer_name');
 			$admin_email  = get_site_email();
 			$content    	=  get_content('wl_auto_respond_mails','5');	
 			$body       	=  $content->email_content;	
 			$body					=	str_replace('{mem_name}','Admin',$body);
 			$body					=	str_replace('{body_text}','You have received an enquiry and details are given below.',$body);
 			$body					=	str_replace('{name}',$fullname,$body);
-			$body					=	str_replace('{email}',$this->input->post('email'),$body);
+			$body					=	str_replace('{email}',$this->input->post('customer_mail'),$body);
 			$body					=	str_replace('{mobile}',$this->input->post('mobile_number'),$body);
-			if($this->input->post('phone_number')!=''){
-				$body			=	str_replace('{phone}',$this->input->post('phone_number'),$body);
+			if($this->input->post('mobile_number')!=''){
+				$body			=	str_replace('{phone}',$this->input->post('mobile_number'),$body);
 			}
 			else{
 				$body			=	str_replace('{phone}','',$body);
 				$body			=	str_replace('Phone No :','',$body);
 			}
-			$body			=	str_replace('{comments}',$this->input->post('description'),$body);					
+			$body			=	str_replace('{comments}',$this->input->post('comments'),$body);					
 			$body			=	str_replace('{site_name}',$this->config->item('site_name'),$body);
 			$body			=	str_replace('{admin_email}',$admin_email->admin_email,$body);
 			$body			=	str_replace('{url}',base_url(),$body);
 			
-			//  die($body);
+			 // die($body);
 			$mail_conf =  array(
-				'subject'=>"Enquiry from ".$this->input->post('first_name')." ",
+				'subject'=>"Enquiry from ".$this->input->post('customer_mail')." ",
 				'to_email'=>$admin_email->admin_email,
-				'from_email'=>$this->input->post('email'),
+				'from_email'=>$this->input->post('customer_mail'),
 				'from_name'=>$this->input->post('first_name'),
 				'body_part'=>$body
 			);
 			//trace($mail_conf);
 			//exit;
-			$this->dmailer->mail_notify($mail_conf);				
+			//echo $this->dmailer->mail_notify($mail_conf);die;
+                        $this->mailer->sending_mail($mail_conf);
 	
 			/* End Send  mail to admin */
 			/********* Send  mail to user ***********/
@@ -90,28 +96,30 @@ class Pages extends Public_Controller
 			$body				=	str_replace('{mem_name}',$fullname,$body);
 			$body				=	str_replace('{body_text}','You have placed an enquiry and details are given below.',$body);
 			$body				=	str_replace('{name}',$fullname,$body);
-			$body				=	str_replace('{email}',$this->input->post('email'),$body);
+			$body				=	str_replace('{email}',$this->input->post('customer_mail'),$body);
 			$body				=	str_replace('{mobile}',$this->input->post('mobile_number'),$body);
-			if($this->input->post('phone_number')!=''){
-				$body			=	str_replace('{phone}',$this->input->post('phone_number'),$body);
+			if($this->input->post('mobile_number')!=''){
+				$body			=	str_replace('{phone}',$this->input->post('mobile_number'),$body);
 			}
 			else{
 				$body			=	str_replace('{phone}','',$body);
 				$body			=	str_replace('Phone No :','',$body);
 			}
-			$body			=	str_replace('{comments}',$this->input->post('description'),$body);				
+			$body			=	str_replace('{comments}',$this->input->post('comments'),$body);				
 			$body			=	str_replace('{site_name}',$this->config->item('site_name'),$body);
 			$body			=	str_replace('{url}',base_url(),$body);
 			
 	
 			$mail_conf =  array(
 				'subject'=>"Enquiry placed at ".$this->config->item('site_name')." ",
-				'to_email'=>$this->input->post('email'),
+				'to_email'=>$this->input->post('customer_mail'),
 				'from_email'=>$admin_email->admin_email,
 				'from_name'=>$this->config->item('site_name'),
 				'body_part'=>$body
 			);
-			$this->dmailer->mail_notify($mail_conf);				
+                        //print $mail_conf;die;
+			//$this->dmailer->mail_notify($mail_conf);	
+                        $this->mailer->sending_mail($mail_conf);
 			/* End Send  mail to user */
 			$this->session->set_userdata(array('msg_type'=>'success'));
 			$this->session->set_flashdata('success', 'Your feedback has been added successfully.We will get back to you soon.'); 
@@ -214,7 +222,7 @@ class Pages extends Public_Controller
 													'body_part'=>$body
 												);
 			
-			$this->dmailer->mail_notify($mail_conf);				
+			echo $this->dmailer->mail_notify($mail_conf);die;				
 	
 			/* End Send  mail to admin */
 			/********* Send  mail to user ***********/

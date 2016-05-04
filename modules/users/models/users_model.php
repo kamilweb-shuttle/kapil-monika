@@ -12,9 +12,9 @@ class Users_model extends MY_Model
 	*/
 	public function create_user(){
 		$password = $this->safe_encrypt->encode($this->input->post('password',TRUE));
-    $is_same_bill_ship =   $this->input->post('is_same',TRUE);
+                $is_same_bill_ship =   $this->input->post('is_same',TRUE);
 		$register_array = array(
-			'user_name'        => $this->input->post('username',TRUE),
+			'user_name'        => $this->input->post('email_address',TRUE),
 			'password'         => $password,
 			//	'title'            => $this->input->post('title',TRUE),
 			'first_name'       => $this->input->post('first_name',TRUE),
@@ -23,7 +23,7 @@ class Users_model extends MY_Model
 			//'birth_date'       => $this->input->post('birth_date',TRUE),
 			//'find_us'          => $this->input->post('find_us',TRUE),
 			//'phone_number'     => $this->input->post('phone_number',TRUE),
-			'mobile_number'    => $this->input->post('mobile_number',TRUE),	
+			'mobile_number'    => $this->input->post('mobile_num',TRUE),	
 			'actkey'           =>md5($this->input->post('login_username',TRUE)),
 			'account_created_date'=>$this->config->item('config.date.time'),
 			'current_login'    =>$this->config->item('config.date.time'),

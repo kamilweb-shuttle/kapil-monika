@@ -7,6 +7,7 @@ class Dmailer
 		
     public function __construct()
 	{
+        
 		
 		$this->CI =& get_instance();		
 		$config = array(

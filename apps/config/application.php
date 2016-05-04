@@ -2,7 +2,7 @@
 
 $config['bottom.debug'] = 0;
 $config['site.status']	= '1';
-$config['site_name']	= 'Telepoint';
+$config['site_name']	= 'Kapil Monika';
 
 $config['auth.password_min_length']	= '6';
 $config['auth.password_force_numbers']	= '0';
