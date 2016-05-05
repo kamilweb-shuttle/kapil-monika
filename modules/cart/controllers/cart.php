@@ -55,7 +55,8 @@ class Cart extends Public_Controller
             $data['tax_cent']           = $tax_cent;	
 				
             $data['title']              = "Shopping Cart";	
-            $this->load->view('view_my_cart',$data);
+            //$this->load->view('view_my_cart',$data);
+            $this->load->view('view_cart_detail',$data);
 
 
     }
@@ -618,7 +619,8 @@ class Cart extends Public_Controller
   }   
 
 	private function add_cart(){
-		$productId  = (int) $this->uri->segment(3);
+		//$productId  = (int) $this->uri->segment(3);
+               $productId  = $this->input->post('product_cart_id');
 		$color  		= $this->input->get_post('color');
 		$size  			= $this->input->get_post('size');
 						
@@ -711,7 +713,8 @@ class Cart extends Public_Controller
     public function remove_item()
     {
             $data = array(
-             'rowid' =>$this->uri->segment(3),
+             //'rowid' =>$this->uri->segment(3),
+                'rowid' =>$this->input->post('row_id'),
              'qty' => 0
             );
 

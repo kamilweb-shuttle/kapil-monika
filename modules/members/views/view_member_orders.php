@@ -4,8 +4,151 @@ $curr_symbol = display_symbol();
 $default_date = '2014-06-01';
 $posted_start_date = $this->input->post('start_date');
 ?>
-	<div class="mob_hider"></div>
-  <!-- HEADER ENDS -->
+
+<div role="main" class="main">
+		
+				<!-- Begin page top -->
+		<section class="page-breadcrumb">
+				<div class="container">
+					
+					<ol class="breadcrumb">
+  <li><a href="#">Home</a></li>
+
+  <li class="active">Ethinic Wear for Women</li>
+</ol>
+					
+				</div>
+			</section>
+			<!-- End page top -->
+
+			<div class="container">
+				
+				<div class="row featured-boxes">
+					<div class="col-md-12">
+						<h3>Your Orders</h3>
+						<div class="featured-box featured-box-cart">
+							<div class="box-content">
+								<form method="post" action="#">
+									<table cellspacing="0" class="shop_table" width="100%">
+										<thead>
+											<tr>
+												<th class="product-thumbnail">
+													Item
+												</th>
+												<th class="product-name">
+													Product name
+												</th>
+												<th class="product-price">
+													Price
+												</th>
+												<th class="product-quantity">
+													Quantity
+												</th>
+												<th class="product-subtotal">
+													SubTotal
+												</th>
+											
+											</tr>
+										</thead>
+										<tbody>
+											<tr class="cart_table_item">
+												
+												<td class="product-thumbnail">
+													<a href="shop-product-sidebar.html">
+														<img alt="" width="80" src="images/content/products/product-thumb.jpg">
+													</a>
+												</td>
+												<td class="product-name">
+													<a href="shop-product-sidebar.html">Linen shirt with ribbon at the front</a>
+												</td>
+												<td class="product-price">
+													<span class="amount">$299</span>
+												</td>
+												<td class="product-quantity">
+													
+														<div class="quantity">
+															<input type="button" class="minus" value="-">
+															<input type="text" class="input-text qty text" title="Qty" value="1" name="quantity" min="1" step="1">
+															<input type="button" class="plus" value="+">
+														</div>
+													
+												</td>
+												<td class="product-subtotal">
+													<span class="amount">$299</span>
+												</td>
+												
+											</tr>
+											<tr class="cart_table_item">
+												
+												<td class="product-thumbnail">
+													<a href="shop-product-sidebar.html">
+														<img alt="" width="80" src="images/content/products/product-thumb-1.jpg">
+													</a>
+												</td>
+												<td class="product-name">
+													<a href="shop-product-sidebar.html">Poplin shirt with fine pleated bands</a>
+												</td>
+												<td class="product-price">
+													<span class="amount">$72</span>
+												</td>
+												<td class="product-quantity">
+													<form enctype="multipart/form-data" method="post">
+														<div class="quantity">
+															<input type="button" class="minus" value="-">
+															<input type="text" class="input-text qty text" title="Qty" value="1" name="quantity" min="1" step="1">
+															<input type="button" class="plus" value="+">
+														</div>
+													</form>
+												</td>
+												<td class="product-subtotal">
+													<span class="amount">$72</span>
+												</td>
+											
+											</tr>
+											<tr class="cart_table_item">
+												
+												<td class="product-thumbnail">
+													<a href="shop-product-sidebar.html">
+														<img alt="" width="80" src="images/content/products/product-thumb-4.jpg">
+													</a>
+												</td>
+												<td class="product-name">
+													<a href="shop-product-sidebar.html">Contrasting shirt</a>
+												</td>
+												<td class="product-price">
+													<span class="amount">$60</span>
+												</td>
+												<td class="product-quantity">
+													<form enctype="multipart/form-data" method="post">
+														<div class="quantity">
+															<input type="button" class="minus" value="-">
+															<input type="text" class="input-text qty text" title="Qty" value="1" name="quantity" min="1" step="1">
+															<input type="button" class="plus" value="+">
+														</div>
+													</form>
+												</td>
+												<td class="product-subtotal">
+													<span class="amount">$60</span>
+												</td>
+											
+											</tr>
+										</tbody>
+									</table>
+								
+							</form></div>
+						</div>
+						
+					</div>
+					
+				</div>
+			
+                        </div>
+
+
+
+
+	<!--div class="mob_hider"></div>
+ 
   
   <div class="breadcrumbs mob_hider">
     <div class="wrapper">
@@ -34,7 +177,7 @@ $posted_start_date = $this->input->post('start_date');
               </p>
             	<p class="mt5">Last Login : <?php echo getDateFormat($this->last_login,6); ?>/ <span class="red"><a href="<?php echo base_url(); ?>users/logout" class="underline"><img src="<?php echo theme_url(); ?>images/lgt.png" width="17" height="17" class="vam mr5" alt="">Logout!</a></span></p>
             </div>            
-            <!-- left ends --> 
+            
             <br />
             <br />            
             <div class="acc_mid_boxes">
@@ -124,6 +267,7 @@ $posted_start_date = $this->input->post('start_date');
                           <div class="cb"></div>
                         </div>     
                       	<!-- list 1 --> 
+                        	<!--
                         <?php
 												$i++;
 											}
@@ -141,7 +285,7 @@ $posted_start_date = $this->input->post('start_date');
                   <?php
 								}
 							echo form_close();		
-							?>
+							?>	<!--
             </div>
             <br>
           </div>
@@ -151,15 +295,11 @@ $posted_start_date = $this->input->post('start_date');
     </div>
   </section>	
   <section class="wrapper pt15  bt1 mid_banner_cont">
-  	<?php 
-		$cond = array();
-		$cond['position'] = "Bottom Banner";
-		banner_display($cond,330,182,'mid_banner', '<div class="mid_banner">', '</div>', "3");
-		?>
+  	
 	  <div class="cb"></div>
 	</section>
 	<script type="text/javascript" src="<?php echo base_url();?>assets/developers/js/ui/jquery-ui-1.8.16.custom.min.js"></script>
-	<link type="text/css" href="<?php echo base_url();?>assets/developers/js/ui/themes/ui-lightness/jquery-ui-1.8.16.custom.css" rel="stylesheet" />
+	<link type="text/css" href="<?php echo base_url();?>assets/developers/js/ui/themes/ui-lightness/jquery-ui-1.8.16.custom.css" rel="stylesheet" /-->
       
 	<script type="text/javascript">
    jQuery(document).ready(function(){

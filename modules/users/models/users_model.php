@@ -49,7 +49,7 @@ class Users_model extends MY_Model
 			);	
 			//$bill_Id =  $this->safe_insert('wl_customers_address_book',$billing_array,FALSE);
 					
-			if( $bill_Id > 0 ){
+			/*if( $bill_Id > 0 ){
 				if( $is_same_bill_ship =='Y'){
 					$shipping_array = array( 	
 						'customer_id'  =>$insId,				
@@ -60,7 +60,7 @@ class Users_model extends MY_Model
 						'city'        => $this->input->post('billing_city',TRUE),	
 						'state'       => $this->input->post('billing_state',TRUE),
 						'country'     => $this->input->post('billing_country'),*/
-						'reciv_date'  => $this->config->item('config.date.time'),
+					/*	'reciv_date'  => $this->config->item('config.date.time'),
 						'address_type' =>'Ship',
 						'default_status'=>'Y'
 					);
@@ -75,13 +75,13 @@ class Users_model extends MY_Model
 						'city'        => $this->input->post('shipping_city',TRUE),	
 						'state'       => $this->input->post('shipping_state',TRUE),
 						'country'     => $this->input->post('shipping_country'),*/
-						'reciv_date'  => $this->config->item('config.date.time'),
+					/*	'reciv_date'  => $this->config->item('config.date.time'),
 						'address_type' =>'Ship',
 						'default_status'=>'Y'
 					);	
 				}							
 				//$this->safe_insert('wl_customers_address_book',$shipping_array,FALSE);
-			}
+			}*/
 			return  $insId ;
 		}		
 	}

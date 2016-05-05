@@ -6,7 +6,7 @@ class Users extends Public_Controller {
         parent::__construct();
         $this->load->helper(array('date', 'language', 'cookie', 'file'));
         $this->load->model(array('users/users_model', 'pages/pages_model'));
-        $this->load->library(array('safe_encrypt', 'securimage_library', 'Auth', 'Dmailer', 'cart'));
+        $this->load->library(array('safe_encrypt', 'securimage_library', 'Auth', 'Dmailer','mailer', 'cart'));
         $this->form_validation->set_error_delimiters("<div class='required'>", "</div>");
 
         $rf_session = $this->session->userdata('ref');
@@ -16,6 +16,7 @@ class Users extends Public_Controller {
     }
 
     public function index() {
+       
         if ($this->auth->is_user_logged_in()) {
             redirect('members/', '');
         }
@@ -116,15 +117,15 @@ class Users extends Public_Controller {
 
     public function login() {
         if (!$this->auth->is_user_logged_in()) {
-            $this->form_validation->set_rules('login_username', 'Email ID', 'trim|required|valid_email');
+            $this->form_validation->set_rules('login_email', 'Email ID', 'trim|required|valid_email');
             $this->form_validation->set_rules('login_password', 'Password', 'trim|required|');
             //$this->form_validation->set_rules('user', 'User', 'trim');
             if ($this->form_validation->run() == TRUE) {
-                $username = $this->input->post('login_username');
+                $username = $this->input->post('login_email');
                 $password = $this->input->post('login_password');
                 $rember = ($this->input->post('remember') != "") ? TRUE : FALSE;
                 if ($this->input->post('remember') == "Y") {
-                    set_cookie('userName', $this->input->post('login_username'), time() + 60 * 60 * 24 * 30);
+                    set_cookie('userName', $this->input->post('login_email'), time() + 60 * 60 * 24 * 30);
                     set_cookie('pwd', $this->input->post('login_password'), time() + 60 * 60 * 24 * 30);
                 } else {
                     delete_cookie('userName');
@@ -144,15 +145,22 @@ class Users extends Public_Controller {
                     $ref = $this->session->userdata('ref');
                     $this->session->unset_userdata(array('ref' => 0));
                     if ($ref != "") {
-                        redirect($ref, '');
+                        
+                       // redirect($ref, '');
+                        echo 2;die;
                     } else {
-                        redirect('members/myaccount', '');
+                        //redirect('members/myaccount', '');
+                        
+                        echo 2;die;
                     }
                 } else {
-                    $this->session->set_userdata(array('msg_type' => 'error'));
-                    $this->session->set_flashdata('error', $this->config->item('login_failed'));
-                    redirect('login', '');
+                    echo 3;die;
+                   // $this->session->set_userdata(array('msg_type' => 'error'));
+                   // $this->session->set_flashdata('error', $this->config->item('login_failed'));
+                   // redirect('login', '');
                 }
+            }else{
+                echo validation_errors();die;
             }
             //$condition       = array('friendly_url'=>'login','status'=>'1');			 
             //$content         = $this->pages_model->get_cms_page( $condition );				 
@@ -160,7 +168,8 @@ class Users extends Public_Controller {
             $data['heading_title'] = "Login";
             $this->load->view('users_login', $data);
         } else {
-            redirect('members/myaccount', 'refresh');
+            //redirect('members/myaccount', 'refresh');
+            echo 4;
         }
     }
 
@@ -174,9 +183,10 @@ class Users extends Public_Controller {
         $this->session->unset_userdata(array("ref" => '0'));
         $this->cart->destroy();
         $this->auth->logout();
+        
         //$this->session->set_userdata(array('msg_type'=>'success'));
         //$this->session->set_flashdata('success',$this->config->item('member_logout'));
-        redirect('login', '');
+       // redirect('login', '');
     }
 
     public function thanks() {
@@ -186,7 +196,7 @@ class Users extends Public_Controller {
 
     public function register() {
         
-        if (!$this->auth->is_user_logged_in()) {
+       if (!$this->auth->is_user_logged_in()) {
            
             //$is_same_bill_ship =   $this->input->post('is_same',TRUE);
             $this->form_validation->set_rules('email_address', 'Email ID', 'trim|required|valid_email|max_length[80]|callback_email_check');
@@ -205,7 +215,7 @@ class Users extends Public_Controller {
                 $password = $this->input->post('password', TRUE);
                 if ($registerId != '') {
                     /* Send  mail to user */
-                    $content = get_content('wl_auto_respond_mails', '1');
+                    $content = get_content('wl_auto_respond_mails', '6');
                     $subject = str_replace('{site_name}', $this->config->item('site_name'), $content->email_subject);
                     $body = $content->email_content;
                     $verify_url = "<a href=" . base_url() . "users/login>Click here </a>";
@@ -220,13 +230,13 @@ class Users extends Public_Controller {
 
                     $mail_conf = array(
                         'subject' => $subject,
-                        'to_email' => $this->input->post('username'),
+                        'to_email' => $this->input->post('email_address'),
                         'from_email' => $this->admin_info->admin_email,
                         'from_name' => $this->config->item('site_name'),
                         'body_part' => $body
                     );
                     //$this->dmailer->mail_notify($mail_conf);
-
+                      $this->mailer->sending_mail($mail_conf); 
                     /* End send  mail to user */
                     /* Send  mail to admin */
                     $subject = 'New member is registered';
@@ -276,13 +286,13 @@ class Users extends Public_Controller {
                     $mail_conf = array(
                         'subject' => $subject,
                         'to_email' => $this->admin_info->admin_email,
-                        'from_email' => $this->input->post('username'),
+                        'from_email' => $this->input->post('email_address'),
                         'from_name' => $this->config->item('site_name'),
                         'body_part' => $body
                     );
 
-                    $this->dmailer->mail_notify($mail_conf);
-
+                    //$this->dmailer->mail_notify($mail_conf);
+                      $this->mailer->sending_mail($mail_conf);
                     /* End send  mail to admin */
                 }
                 $this->auth->verify_user($username, $password);
@@ -290,13 +300,16 @@ class Users extends Public_Controller {
                 $message = str_replace('<site_name>', $this->config->item('site_name'), $message);
                 // $this->session->set_userdata(array('msg_type'=>'success'));
                 $this->session->set_flashdata('success', $message);
+                $cart_items='';
                 if ($cart_items != "" && $cart_items > 0) {
-                    redirect('cart', '');
+                    //redirect('cart', '');
+                    echo 1;die;
                 } else {
-                    redirect('members/myaccount', '');
+                   // redirect('members/myaccount', '');
+                    echo 2;die;
                 }
             }else{
-                echo json_encode(validation_errors());
+               echo validation_errors();die;
             }
 
             $condition = array('friendly_url' => 'register', 'status' => '1');
@@ -305,8 +318,9 @@ class Users extends Public_Controller {
             $data['heading_title'] = "Register";
             $data['unq_section'] = "Register";
             $this->load->view('users_register', $data);
-        } else {
-            redirect('members/myaccount', 'refresh');
+       } else {
+           echo 2;die;
+          // redirect('members/myaccount', 'refresh');
         }
     }
 

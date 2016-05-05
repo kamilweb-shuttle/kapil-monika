@@ -24,7 +24,8 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <p class="clearfix"><button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button></p>
-            
+            <div class="alert alert-danger" id="reg_err" style="display:none"></div>
+            <div class="alert alert-success" id="reg_suc" style="display:none"></div>
             <form id="form-registration" role="form" class="form-horizontal">
                 <h4>Register</h4>
                 <p>If you're not a member, register here.</p>
@@ -122,12 +123,73 @@
             type:"Post",
             url:'<?php echo site_url(); ?>users/register',
             data:form_data,
+            dataType:"html",
+            //async:false,
             success:function(msg){
-                
+               
+             if (msg==1){
+                $("#reg_suc").html("You are successfully Resitered enjoy shopping with us").fadeIn('slow').delay(3000).fadeOut('slow',function(){
+                   
+                    
+                 });
+                 window.location.replace('<?php echo base_url() ?>members/myaccount');
+               
+             }else if(msg==2){
+                $("#reg_suc").html("You are successfully Resitered enjoy shopping with us").fadeIn('slow').delay(3000).fadeOut('slow',function(){
+                      
+                 });
+                setTimeout(function(){
+                    window.location.href='<?php echo base_url() ?>members/myaccount';
+                },4000);
+                }  else{
+                 
+               $("#reg_err").html(msg).fadeIn('slow').delay(3000).fadeOut('slow');
+                        
+                }   
             },
             
         });
      });
+     
+     
+    $(document).on('click','#user_logout',function(){
+      $.ajax({
+            url:'<?php echo site_url(); ?>users/logout',
+            success:function(){
+              location.reload(); 
+              
+            },
+            
+        });
+    }); 
+    
+    $("#form-login").submit(function(e){
+    e.preventDefault();
+      var form_data=$(this).serialize();
+        $.ajax({
+            type:"Post",
+            url:'<?php echo site_url(); ?>users/login',
+            data:form_data,
+            async:false,
+            dataType:"html",
+            success:function(msg){
+              //location.reload();
+              if(msg==2){
+                  $("#login_err").html("You are successfully Logedin").fadeIn('slow').delay(3000).fadeOut('slow');
+                  setTimeout(function(){
+                    window.location.href='<?php echo base_url() ?>members/myaccount';
+                },4000);
+              }else if(msg==3){
+                  $("#login_err").html("Login failed invaid Email/Password").fadeIn('slow').delay(3000).fadeOut('slow'); 
+              }else{
+             $("#login_err").html(msg).fadeIn('slow').delay(3000).fadeOut('slow');
+              }    
+        },
+            
+        });
+    });
+    
+     
      
  }); 
     

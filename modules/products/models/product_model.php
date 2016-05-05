@@ -74,7 +74,7 @@ class Product_model extends MY_Model
 		$this->db->where('wlp.status !=','2');
 		$this->db->join('wl_products_media AS wlpm','wlp.products_id=wlpm.products_id','left');
 		$q=$this->db->get();
-		//echo_sql();
+		//echo_sql();die;
 		$result = $q->result_array();	
 		return $result;
 	}

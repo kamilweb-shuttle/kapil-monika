@@ -20,10 +20,12 @@ else{
             <a class="logo hidden-xs" href="index.html"><img src="<?php echo base_url(); ?>/assets/designer/images/logo.png" alt="Flatize"></a> 
             <a class="logo hidden-lg  visible-xs" href="index.html"><img src="<?php echo base_url(); ?>/assets/designer/images/logo-sm.png" alt="Flatize"></a>
         </div>
+         <?php if($this->session->userdata('user_id')==''){ ?>
         <ul class="nav navbar-nav navbar-act pull-right">
             <li class="login"><a href="javascript:void(0);"><i class="fa fa-user"></i></a></li>
             <li class="search"><a href="javascript:void(0);" data-toggle="modal" data-target=".bs-example-modal-lg"><i class="fa fa-search"></i></a></li>
         </ul>
+         <?php } ?>
         <div class="navbar-collapse collapse">
             
             

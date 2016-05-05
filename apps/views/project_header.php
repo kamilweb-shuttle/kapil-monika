@@ -32,15 +32,16 @@
 		<!-- Begin Login -->
 		<div class="login-wrapper">
 			<form id="form-login" role="form">
+                            <div id="login_err" class="alert alert-danger" style="display:none"></div>
 				<h4>Login</h4>
 				<p>If you're a member, login here.</p>
 				<div class="form-group">
-					<label for="inputusername">Username</label>
-					<input type="text" class="form-control input-lg" id="inputusername" placeholder="Username">
+					<label for="inputusername">Email</label>
+					<input type="text" name="login_email" class="form-control input-lg" id="login_email" placeholder="Email">
 				</div>
 				<div class="form-group">
 					<label for="inputpassword">Password</label>
-					<input type="password" class="form-control input-lg" id="inputpassword" placeholder="Password">
+					<input name="login_password" type="password" class="form-control input-lg" id="login_password" placeholder="Password">
 				</div>
 				<ul class="list-inline">
 					<li><a href="#" data-toggle="modal" data-target=".bs-example2-modal-lg" id="register">Create new account</a></li>

@@ -19,6 +19,7 @@ class Members extends Private_Controller
 	}
 
 	public function myaccount(){
+              
 		$config['per_page']   =   $this->config->item('per_page');
 		$offset               =   $this->uri->segment(3,0);	
 		$mres = $this->members_model->get_member_address_book( $this->session->userdata('user_id') );	
@@ -27,7 +28,7 @@ class Members extends Private_Controller
 		//$data['billres']      =   $mres[0];		
 		//$data['shipres']      =   $mres[1];
                 
-    $data['page_content'] = get_db_field_value('wl_cms_pages', 'page_description', array('friendly_url'=>'my-account','status'=>1));
+               $data['page_content'] = get_db_field_value('wl_cms_pages', 'page_description', array('friendly_url'=>'my-account','status'=>1));
 		
 		$data['order']	      =   $res_array;
 		$data['unq_section']  =   "Myaccount";	
