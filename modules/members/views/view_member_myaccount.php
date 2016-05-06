@@ -18,6 +18,7 @@
 
 <div class="container">
     <h2>Account Information</h2>
+    <?php echo validation_errors(); ?>
     <div class="row">
         <div class="col-md-8 animation">
             <ul role="tablist" class="nav nav-tabs pro-tabs">
@@ -35,19 +36,20 @@
                     <p>From your My Account Dashboard you have the ability to view a snapshot of your recent account activity and update your account information. Select a link below to view or edit information.</p>
 
                 </div>
+                
                 <div id="edit" class="tab-pane">
-                    <form class="form-horizontal">
+                    <form class="form-horizontal" method="post" action="<?php echo site_url(); ?>members/edit_account">
 
                         <div class="form-group">
                             <label for="inputFN" class="col-sm-2 control-label">First Name </label>
                             <div class="col-sm-6">
-                                <input type="text" class="form-control" id="inputFN">
+                                <input type="text" name="name" class="form-control" value="<?php if(is_array($member_account) && $member_account['first_name']!='' ){ echo $member_account['first_name'];} ?>">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="inputLN" class="col-sm-2 control-label">Last Name </label>
+                            <label for="inputLN" class="col-sm-2 control-label">Mobile </label>
                             <div class="col-sm-6">
-                                <input type="text" class="form-control" id="inputLN">
+                                <input type="text" name="mobile" class="form-control" id="inputLN" value="<?php if(is_array($member_account) && $member_account['first_name']!='' ){ echo $member_account['mobile_number'];} ?>">
                             </div>
                         </div>
 
@@ -55,7 +57,7 @@
                         <div class="form-group">
                             <label for="inputEmail3" class="col-sm-2 control-label">Email Address </label>
                             <div class="col-sm-6">
-                                <input type="email" class="form-control" id="inputEmail3">
+                                <input type="email" name="email" class="form-control" value="<?php if(is_array($member_account) && $member_account['first_name']!='' ){ echo $member_account['user_name'];} ?>">
                             </div>
                         </div>
 

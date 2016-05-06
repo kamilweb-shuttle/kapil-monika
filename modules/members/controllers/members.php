@@ -19,17 +19,20 @@ class Members extends Private_Controller
 	}
 
 	public function myaccount(){
-              
+                
+              //echo "<pre>";
+            // print_r($this->session->all_userdata());die;
+               
 		$config['per_page']   =   $this->config->item('per_page');
 		$offset               =   $this->uri->segment(3,0);	
 		$mres = $this->members_model->get_member_address_book( $this->session->userdata('user_id') );	
-		$condtion             =   "AND customers_id = '".$this->userId."' ";		   
-		$res_array 	      =   $this->order_model->get_orders(0, 3, $condtion);		
-		//$data['billres']      =   $mres[0];		
-		//$data['shipres']      =   $mres[1];
+		$condtion             =     "AND customers_id = '".$this->userId."' ";		   
+		$res_array 	      =     $this->order_model->get_orders(0, 3, $condtion);		
+		//$data['billres']    =   $mres[0];		
+		//$data['shipres']    =   $mres[1];
                 
-               $data['page_content'] = get_db_field_value('wl_cms_pages', 'page_description', array('friendly_url'=>'my-account','status'=>1));
-		
+                $data['page_content'] = get_db_field_value('wl_cms_pages', 'page_description', array('friendly_url'=>'my-account','status'=>1));
+		$data['member_account']=$this->members_model->get_member_row( $this->session->userdata('user_id') );
 		$data['order']	      =   $res_array;
 		$data['unq_section']  =   "Myaccount";	
 		$data['title']        =   "My Account";
@@ -38,36 +41,29 @@ class Members extends Private_Controller
 
 	public function edit_account(){
 		$data['unq_section'] = "Myaccount";
-    $data['title'] = "Edit Account";
-		$mres = $this->members_model->get_member_row( $this->session->userdata('user_id') );	
-	  //trace($mres);
+                $data['title'] = "Edit Account";
 		
-		if( is_array($mres) && !empty($mres)){
-			
-			$this->form_validation->set_rules('name'	 , 'Name', 'trim|required|alpha|max_length[80]|xss_clean');
+	$this->form_validation->set_rules('name', 'Name', 'trim|required|alpha|max_length[80]|xss_clean');
 			$this->form_validation->set_rules('mobile', 'Mobile', 'trim|required|max_length[20]|xss_clean');	
 			$this->form_validation->set_rules('email', ' Email ID', 'required|valid_email');
 			
 			if ($this->form_validation->run() == TRUE){
 				$posted_user_data = array(
-					'first_name'          =>$this->input->post('name'),
-					'user_name'          =>$this->input->post('email'),
-          'mobile_number'       =>$this->input->post('mobile')
+				'first_name'          =>$this->input->post('name'),
+				'user_name'          =>$this->input->post('email'),
+                                'mobile_number'       =>$this->input->post('mobile')
 				);
-        $where       = "customers_id = '".$mres['customers_id']."'"; 
+        $where  = "customers_id = '".$this->session->userdata('user_id')."'"; 
 				$this->members_model->safe_update('wl_customers',$posted_user_data,$where,FALSE);				 
 				$this->session->set_userdata('first_name',$this->input->post('name'));
 				$this->session->set_userdata(array('msg_type'=>'success'));
-        $this->session->set_flashdata('success','Account has been updated successfully!!!');						 
-        redirect('members/edit_account', '');
-      }	
+                                return 1;
+        //$this->session->set_flashdata('success','Account has been updated successfully!!!');						 
+        //redirect('members/myaccount', '');
+                     }	
 		}
-		else{
-			redirect('members', '');
-		}
-		$data['mres'] = $mres;		   
-		$this->load->view('view_member_edit_account',$data);
-	}
+		
+	
 
 	public function change_password(){
 		$mres = $this->members_model->get_member_row( $this->session->userdata('user_id') );	

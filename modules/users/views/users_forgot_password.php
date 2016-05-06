@@ -31,7 +31,8 @@
               <p class="mb10">
                 <input name="verification_code" id="verification_code" value="" type="text" placeholder="Word Verification *">
               </p>
-              <img src="<?php echo site_url('captcha/normal'); ?>/forgot_pass" alt="captchaimage" id="captchaimage" class="vam"> <img src="<?php echo theme_url(); ?>images/ref.png" onclick="document.getElementById('captchaimage').src='<?php echo site_url('captcha/normal'); ?>/forgot_pass/<?php echo uniqid(time()); ?>'+Math.random(); document.getElementById('verification_code').focus();" alt="" class="vam">
+              <?php $image_source=site_url(); ?>
+              <img src="<?php echo $image_source.'captcha/normal/forgot_pass' ?>" alt="captchaimage" id="captchaimage" class="vam"> <img src="<?php echo theme_url(); ?>images/ref.png" onclick="document.getElementById('captchaimage').src='<?php echo site_url('captcha/normal'); ?>/forgot_pass/<?php echo uniqid(time()); ?>'+Math.random(); document.getElementById('verification_code').focus();" alt="" class="vam">
               <?php echo form_error('verification_code');?>
             </div>
             <div class="cb pb7"></div>
@@ -47,12 +48,5 @@
     </div>
   </section>
 
-  <section class="wrapper pt15  bt1 mid_banner_cont">
-    <?php 
-		$cond = array();
-		$cond['position'] = "Bottom Banner";
-		banner_display($cond,330,182,'mid_banner', '<div class="mid_banner">', '</div>', "3");
-		?>
-    <div class="cb"></div>
-  </section>
+ 
 <?php $this->load->view("bottom_application");?>

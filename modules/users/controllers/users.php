@@ -29,14 +29,18 @@ class Users extends Public_Controller {
     }
 
     public function forgotten_password() {
+        
         if ($this->input->post('forgotme') != "") {
             $email = $this->input->post('email', TRUE);
             $this->form_validation->set_rules('email', ' Email ID', 'required|valid_email');
             $this->form_validation->set_rules('verification_code', 'Verification code', 'trim|required|valid_captcha_code[forgot_pass]');
             if ($this->form_validation->run() == TRUE) {
+               
                 $condtion = array('field' => "user_name,password,first_name,last_name", 'condition' => "user_name ='" . $email . "' AND status ='1' ");
                 $res = $this->users_model->find('wl_customers', $condtion);
+               
                 if (is_array($res) && !empty($res)) {
+                      
                     $first_name = $res['first_name'];
                     //$last_name   = $res['last_name'];	
                     $username = $res['user_name'];
@@ -48,8 +52,8 @@ class Users extends Public_Controller {
                     $subject = $content->email_subject;
                     $body = $content->email_content;
 
-                    $verify_url = "<a href=" . base_url() . "users/register>Click here </a>";
-
+                     $verify_url = "<a href=" . base_url() . "users/register>Click here </a>";
+               
                     $name = $first_name;
                     $body = str_replace('{mem_name}', $name, $body);
                     $body = str_replace('{username}', $username, $body);
@@ -66,7 +70,9 @@ class Users extends Public_Controller {
                         'from_name' => $this->config->item('site_name'),
                         'body_part' => $body
                     );
-                    $this->dmailer->mail_notify($mail_conf);
+                    
+                    //$this->dmailer->mail_notify($mail_conf);
+                    echo $this->mailer->sending_mail($mail_conf);die;
                     $this->session->set_userdata(array('msg_type' => 'success'));
                     $this->session->set_flashdata('success', $this->config->item('forgot_password_success'));
                     redirect('forgotten_password', '');
@@ -215,7 +221,7 @@ class Users extends Public_Controller {
                 $password = $this->input->post('password', TRUE);
                 if ($registerId != '') {
                     /* Send  mail to user */
-                    $content = get_content('wl_auto_respond_mails', '6');
+                    $content = get_content('wl_auto_respond_mails', '1');
                     $subject = str_replace('{site_name}', $this->config->item('site_name'), $content->email_subject);
                     $body = $content->email_content;
                     $verify_url = "<a href=" . base_url() . "users/login>Click here </a>";

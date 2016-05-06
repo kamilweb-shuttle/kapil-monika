@@ -45,7 +45,7 @@
 				</div>
 				<ul class="list-inline">
 					<li><a href="#" data-toggle="modal" data-target=".bs-example2-modal-lg" id="register">Create new account</a></li>
-					<li><a href="#">Request new password</a></li>
+					<li><a href="<?php echo site_url(); ?>users/forgotten_password">Request new password</a></li>
 				</ul>
 				<button type="submit" class="btn btn-white">Log in</button>
 				<button type="submit" class="btn-close btn btn-white" >Close</button>
