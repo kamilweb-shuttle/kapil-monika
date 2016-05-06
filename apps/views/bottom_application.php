@@ -181,6 +181,11 @@
                 },4000);
               }else if(msg==3){
                   $("#login_err").html("Login failed invaid Email/Password").fadeIn('slow').delay(3000).fadeOut('slow'); 
+              }else if(msg==4){
+               $("#login_err").html("You are successfully Logedin").fadeIn('slow').delay(3000).fadeOut('slow');
+                    setTimeout(function(){
+                    window.location.href='<?php echo base_url() ?>members/myaccount';
+                },4000);
               }else{
              $("#login_err").html(msg).fadeIn('slow').delay(3000).fadeOut('slow');
               }    

@@ -12,7 +12,7 @@ class Users_model extends MY_Model
 	*/
 	public function create_user(){
 		$password = $this->safe_encrypt->encode($this->input->post('password',TRUE));
-                $is_same_bill_ship =   $this->input->post('is_same',TRUE);
+                //$is_same_bill_ship =   $this->input->post('is_same',TRUE);
 		$register_array = array(
 			'user_name'        => $this->input->post('email_address',TRUE),
 			'password'         => $password,
@@ -33,7 +33,17 @@ class Users_model extends MY_Model
 		);
 				
 		$insId =  $this->safe_insert('wl_customers',$register_array,FALSE);
-		if( $insId > 0 ){
+                if( $insId > 0 ){
+                $add_array = array(
+			    'customer_id'        => $insId,
+                            'reciv_date'  => $this->config->item('config.date.time'),
+				'address_type' =>'Bill',
+				'default_status'=>'Y'
+			
+		);
+                            $this->safe_insert('wl_customers_address_book',$add_array,FALSE);
+                }
+		/*if( $insId > 0 ){
 			$billing_array = array(
 				'customer_id'  =>$insId,				
 				/*'name'        => $this->input->post('billing_name',TRUE),
@@ -42,11 +52,11 @@ class Users_model extends MY_Model
 				'phone'       => $this->input->post('billing_phone',TRUE),
 				'city'        => $this->input->post('billing_city',TRUE),	
 				'state'       => $this->input->post('billing_state',TRUE),
-				'country'     => $this->input->post('billing_country'),*/
+				'country'     => $this->input->post('billing_country'),
 				'reciv_date'  => $this->config->item('config.date.time'),
 				'address_type' =>'Bill',
 				'default_status'=>'Y'
-			);	
+			);	*/
 			//$bill_Id =  $this->safe_insert('wl_customers_address_book',$billing_array,FALSE);
 					
 			/*if( $bill_Id > 0 ){
@@ -83,7 +93,7 @@ class Users_model extends MY_Model
 				//$this->safe_insert('wl_customers_address_book',$shipping_array,FALSE);
 			}*/
 			return  $insId ;
-		}		
+		//}		
 	}
 
 	public function is_email_exits($data){

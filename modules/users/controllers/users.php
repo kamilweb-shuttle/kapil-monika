@@ -306,10 +306,10 @@ class Users extends Public_Controller {
                 $message = str_replace('<site_name>', $this->config->item('site_name'), $message);
                 // $this->session->set_userdata(array('msg_type'=>'success'));
                 $this->session->set_flashdata('success', $message);
-                $cart_items='';
-                if ($cart_items != "" && $cart_items > 0) {
+                //$cart_items='';
+                if ($this->cart->contents() != "" && count($this->cart->contents()) > 0) {
                     //redirect('cart', '');
-                    echo 1;die;
+                    echo 4;die;
                 } else {
                    // redirect('members/myaccount', '');
                     echo 2;die;

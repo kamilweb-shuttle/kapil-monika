@@ -25,7 +25,8 @@
                 <li class="active"><a data-toggle="tab" role="tab" href="#myaccount">My Dashboard</a></li>
                 <li><a data-toggle="tab" role="tab" href="#edit">Edit Account</a></li>
                 <li><a data-toggle="tab" role="tab" href="#address">Address Book</a></li>
-
+                <div id="error_div" class="alert alert-danger" style="display:none"></div>
+                <div id="success_div" class="alert alert-success" style="display:none"></div>
             </ul>
             
             <div class="tab-content">
@@ -38,7 +39,7 @@
                 </div>
                 
                 <div id="edit" class="tab-pane">
-                    <form class="form-horizontal" method="post" action="<?php echo site_url(); ?>members/edit_account">
+                    <form id="edit_account_form" class="form-horizontal" method="post" action="<?php echo site_url(); ?>members/myaccount">
 
                         <div class="form-group">
                             <label for="inputFN" class="col-sm-2 control-label">First Name </label>
@@ -50,6 +51,7 @@
                             <label for="inputLN" class="col-sm-2 control-label">Mobile </label>
                             <div class="col-sm-6">
                                 <input type="text" name="mobile" class="form-control" id="inputLN" value="<?php if(is_array($member_account) && $member_account['first_name']!='' ){ echo $member_account['mobile_number'];} ?>">
+                                <input type="hidden"  class="form-control" name="edit_details" >
                             </div>
                         </div>
 
@@ -82,61 +84,63 @@
 
                 </div>
                 <div id="address" class="tab-pane">
-                    <form class="form-horizontal">
+                    <form class="form-horizontal" id="address_account_form">
 
                         <div class="form-group">
-                            <label for="inputFN" class="col-sm-3 control-label">First Name </label>
+                            <label name="add_name" class="col-sm-3 control-label"> Name </label>
                             <div class="col-sm-5">
-                                <input type="text" class="form-control" id="inputFN">
+                                <input type="text" name="add_name" class="form-control" value="<?php if(is_array($res_add) && $res_add['name']!='' ){echo $res_add['name'];} ?>">
+                            </div>
+                        </div>
+                      
+                        <div class="form-group">
+                            <label for="inputCN" class="col-sm-3 control-label">Landmark</label>
+                            <div class="col-sm-5">
+                                <input name="add_landmark" type="text" class="form-control" value="<?php if(is_array($res_add) && $res_add['landmark']!='' ){echo $res_add['landmark'];} ?>" >
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="inputLN" class="col-sm-3 control-label">Last Name </label>
+                            <label for="inputPhone" class="col-sm-3 control-label">Mobile </label>
                             <div class="col-sm-5">
-                                <input type="text" class="form-control" id="inputLN">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="inputCN" class="col-sm-3 control-label">Company Name</label>
-                            <div class="col-sm-5">
-                                <input type="text" class="form-control" id="inputCN">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="inputPhone" class="col-sm-3 control-label">Phone </label>
-                            <div class="col-sm-5">
-                                <input type="number" class="form-control" id="inputPhone">
+                                <input name="add_mobile" type="number" class="form-control" value="<?php if(is_array($res_add) && $res_add['mobile']!='' ){echo $res_add['mobile'];} ?>">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="inputAdd" class="col-sm-3 control-label">Address </label>
                             <div class="col-sm-5">
-                                <input type="text" class="form-control" id="inputAdd">
+                                <input name="add_address" type="text" class="form-control" value="<?php if(is_array($res_add) && $res_add['address']!='' ){echo $res_add['address'];} ?>">
                             </div>
                         </div>
-                        <div class="form-group">
-                            <div class="col-sm-5 col-sm-offset-3">
-                                <input type="text" class="form-control" id="inputAdd">
-                            </div>
-                        </div>
+                      
                         <div class="form-group">
                             <label for="inputCity" class="col-sm-3 control-label">Town / City </label>
                             <div class="col-sm-5">
-                                <input type="text" class="form-control" id="inputCity">
+                                <input name="add_city" type="text" class="form-control" value="<?php if(is_array($res_add) && $res_add['city']!='' ){echo $res_add['city'];} ?>">
+                            </div>
+                        </div>
+                         <div class="form-group">
+                            <label for="inputCity" class="col-sm-3 control-label">State</label>
+                            <div class="col-sm-5">
+                                <input name="add_state" type="text" class="form-control" value="<?php if(is_array($res_add) && $res_add['state']!='' ){echo $res_add['state'];} ?>">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="inputPostcode" class="col-sm-3 control-label">Postcode </label>
                             <div class="col-sm-5">
-                                <input type="text" class="form-control" id="inputPostcode">
+                                <input name="add_zipcode" type="text" class="form-control" value="<?php if(is_array($res_add) && $res_add['zipcode']!='' ){echo $res_add['zipcode'];} ?>">
                             </div>
                         </div>
                         <div class="form-group">
+                            <?php $countries=$this->db->query("select * from  wl_countries ")->result(); ?>
                             <label for="selectCountry" class="col-sm-3 control-label">Country </label>
                             <div class="col-sm-5">
                                 <div class="list-sort">
-                                    <select id="selectCountry" class="formDropdown">
+                                    <select id="selectCountry" name="add_country" class="formDropdown">
                                         <option value="">Select a country</option>
+                                        <?php foreach($countries as $country){
+                                            ?>
+                                        <option value="<?php echo $country->country_id; ?>" <?php if(is_array($res_add) && $res_add['country']==$country->country_id ){echo "selected";} ?>><?php echo $country->name; ?></option>
+                                       <?php } ?>
                                     </select>
                                 </div>
                             </div>
@@ -148,10 +152,10 @@
                                 <input type="submit" value="Edit" class="btn btn-primary btn-sm">
                                 <input type="submit" value="Save" class="btn btn-primary btn-sm">
                             </div>
-                    </form>
+                  
 
                 </div>
-
+  </form>
             </div>
         </div>
     </div>
@@ -246,3 +250,39 @@
 </section-->
 
 <?php $this->load->view("bottom_application"); ?>
+<script>
+$("#edit_account_form").submit(function(e){
+    e.preventDefault();
+     var form_data=$(this).serialize();
+   $.ajax({
+       type:"Post",
+       url:'<?php echo site_url() ?>members/edit_account',
+       data:form_data,
+       success:function(msg){
+           if(msg==2){
+              $("#success_div").html("Updated Successfully").fadeIn('slow').delay(4000).fadeOut('slow') ; 
+           }else{
+         $("#error_div").html(msg).fadeIn('slow').delay(4000).fadeOut('slow') ;
+       }
+   s}
+   });
+});
+
+
+$("#address_account_form").submit(function(e){
+   e.preventDefault();
+     var form_data=$(this).serialize();
+   $.ajax({
+       type:"Post",
+       url:'<?php echo site_url() ?>members/manage_addresses_edit',
+       data:form_data,
+       success:function(msg){
+           if(msg==2){
+              $("#success_div").html("Updated Successfully").fadeIn('slow').delay(4000).fadeOut('slow') ; 
+           }else{
+         $("#error_div").html(msg).fadeIn('slow').delay(4000).fadeOut('slow') ;
+       }
+   }
+   });
+});
+</script>
