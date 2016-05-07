@@ -1,4 +1,4 @@
-<?php 
+<?php
 $this->load->view("top_application");
 $curr_symbol = display_symbol();
 $default_date = '2014-06-01';
@@ -6,211 +6,168 @@ $posted_start_date = $this->input->post('start_date');
 ?>
 
 <div role="main" class="main">
-		
-				<!-- Begin page top -->
-		<section class="page-breadcrumb">
-				<div class="container">
-					
-					<ol class="breadcrumb">
-  <li><a href="#">Home</a></li>
 
-  <li class="active">Ethinic Wear for Women</li>
-</ol>
-					
-				</div>
-			</section>
-			<!-- End page top -->
+    <!-- Begin page top -->
+    <section class="page-breadcrumb">
+        <div class="container">
 
-			<div class="container">
-				
-				<div class="row featured-boxes">
-					<div class="col-md-12">
-						<h3>Your Orders</h3>
-						<div class="featured-box featured-box-cart">
-							<div class="box-content">
-								<form method="post" action="#">
-									<table cellspacing="0" class="shop_table" width="100%">
-										<thead>
-											<tr>
-												<th class="product-thumbnail">
-													Item
-												</th>
-												<th class="product-name">
-													Product name
-												</th>
-												<th class="product-price">
-													Price
-												</th>
-												<th class="product-quantity">
-													Quantity
-												</th>
-												<th class="product-subtotal">
-													SubTotal
-												</th>
-											
-											</tr>
-										</thead>
-										<tbody>
-											<tr class="cart_table_item">
-												
-												<td class="product-thumbnail">
-													<a href="shop-product-sidebar.html">
-														<img alt="" width="80" src="images/content/products/product-thumb.jpg">
-													</a>
-												</td>
-												<td class="product-name">
-													<a href="shop-product-sidebar.html">Linen shirt with ribbon at the front</a>
-												</td>
-												<td class="product-price">
-													<span class="amount">$299</span>
-												</td>
-												<td class="product-quantity">
-													
-														<div class="quantity">
-															<input type="button" class="minus" value="-">
-															<input type="text" class="input-text qty text" title="Qty" value="1" name="quantity" min="1" step="1">
-															<input type="button" class="plus" value="+">
-														</div>
-													
-												</td>
-												<td class="product-subtotal">
-													<span class="amount">$299</span>
-												</td>
-												
-											</tr>
-											<tr class="cart_table_item">
-												
-												<td class="product-thumbnail">
-													<a href="shop-product-sidebar.html">
-														<img alt="" width="80" src="images/content/products/product-thumb-1.jpg">
-													</a>
-												</td>
-												<td class="product-name">
-													<a href="shop-product-sidebar.html">Poplin shirt with fine pleated bands</a>
-												</td>
-												<td class="product-price">
-													<span class="amount">$72</span>
-												</td>
-												<td class="product-quantity">
-													<form enctype="multipart/form-data" method="post">
-														<div class="quantity">
-															<input type="button" class="minus" value="-">
-															<input type="text" class="input-text qty text" title="Qty" value="1" name="quantity" min="1" step="1">
-															<input type="button" class="plus" value="+">
-														</div>
-													</form>
-												</td>
-												<td class="product-subtotal">
-													<span class="amount">$72</span>
-												</td>
-											
-											</tr>
-											<tr class="cart_table_item">
-												
-												<td class="product-thumbnail">
-													<a href="shop-product-sidebar.html">
-														<img alt="" width="80" src="images/content/products/product-thumb-4.jpg">
-													</a>
-												</td>
-												<td class="product-name">
-													<a href="shop-product-sidebar.html">Contrasting shirt</a>
-												</td>
-												<td class="product-price">
-													<span class="amount">$60</span>
-												</td>
-												<td class="product-quantity">
-													<form enctype="multipart/form-data" method="post">
-														<div class="quantity">
-															<input type="button" class="minus" value="-">
-															<input type="text" class="input-text qty text" title="Qty" value="1" name="quantity" min="1" step="1">
-															<input type="button" class="plus" value="+">
-														</div>
-													</form>
-												</td>
-												<td class="product-subtotal">
-													<span class="amount">$60</span>
-												</td>
-											
-											</tr>
-										</tbody>
-									</table>
-								
-							</form></div>
-						</div>
-						
-					</div>
-					
-				</div>
-			
-                        </div>
+            <ol class="breadcrumb">
+                <li><a href="#">Home</a></li>
 
+                <li class="active">Ethinic Wear for Women</li>
+            </ol>
 
+        </div>
+    </section>
+    <!-- End page top -->
 
+    <div class="container">
 
-	<!--div class="mob_hider"></div>
- 
-  
-  <div class="breadcrumbs mob_hider">
-    <div class="wrapper">
-      <p class="ml5">YOU ARE HERE : <a href="<?php echo base_url(); ?>"><img src="<?php echo theme_url(); ?>images/hm.png" class="vam pb3" alt=""></a> <b>&gt;</b> <a href="<?php echo base_url(); ?>members/myaccount">My Account</a> <b>&gt;</b> <strong>Order History</strong></p>
-    </div>
-  </div>
+        <div class="row featured-boxes">
+            <div class="col-md-12">
+                <h3>Your Orders</h3>
+                <div class="featured-box featured-box-cart">
+                    <div class="box-content">
+                        <form method="post" action="#">
+                            <table cellspacing="0" class="shop_table" width="100%">
+                                <thead>
+                                    <tr>
+                                        <th class="product-thumbnail">
+                                            Invoice Number
+                                        </th>
+                                        <th class="product-name">
+                                            Delivery Status
+                                        </th>
+                                        <th class="product-price">
+                                           Amount
+                                        </th>
+                                        <th class="product-quantity">
+                                            Payment Status
+                                        </th>
+                                        <th class="product-subtotal">
+                                            Order Date
+                                        </th>
 
-  <section class="wrapper pt30" style="min-height:450px">
-    <div class="inner_wrapper">
-      <h1 class="mb5">Order History</h1>
-      <ul class="emp_acc_link">
-      	<li><a href="<?php echo base_url(); ?>members/myaccount">My Home</a></li>
-      	<li><a href="<?php echo base_url(); ?>members/orders_history" class="act">Order History</a></li>
-      	<li><a href="<?php echo base_url(); ?>members/members/manage_addresses">My Addresses</a></li>
-      	<li><a href="<?php echo base_url(); ?>members/subscriptions">My Subscriptions</a></li>
-      	<li><a href="<?php echo base_url(); ?>members/edit_account">Manage Account</a></li>
-    	</ul>
-      <div class="cb"></div>
-      <div class="mt2">
-        <div>
-          <div class="p1 pt2 bg-white">
-            <div class="p15 bg-gray border1 acc_title">
-            	<img src="<?php echo theme_url(); ?>images/user.png" width="42" height="43" class="fl mr10" alt="">
-            	<p class="fs18 ttu b black">
-              	Welcome <?php echo ($this->fname!='' || $this->fname!=0)?$this->fname:'Member';?>!
-              </p>
-            	<p class="mt5">Last Login : <?php echo getDateFormat($this->last_login,6); ?>/ <span class="red"><a href="<?php echo base_url(); ?>users/logout" class="underline"><img src="<?php echo theme_url(); ?>images/lgt.png" width="17" height="17" class="vam mr5" alt="">Logout!</a></span></p>
-            </div>            
-            
-            <br />
-            <br />            
-            <div class="acc_mid_boxes">
-            	<script type="text/javascript">function serialize_form() { return $('#ord_frm').serialize(); } </script>
-              <?php 
-							echo form_open(base_url()."members/orders_history",'id="ord_frm"'); 
-              error_message(); 
-        			?>
-                <div class="bg-gray border1 p10 pl15 acc_odh_filter">
-                  <p>
-                    <input name="order_id" id="order_id" value="" type="text" class="p5" placeholder="Order/Invoice No.">
-                  </p>
-                  <p>
-                    <input name="start_date" id="start_date" type="text" readonly="readonly" class="p5 vam start_date1" placeholder="From">
-                    <img src="<?php echo theme_url(); ?>images/calendar.png" alt="" class="start_date"></p>
-                  <p>
-                    <input name="end_date" id="end_date" type="text" readonly="readonly" class="p5 vam end_date1" placeholder="To">
-                    <img src="<?php echo theme_url(); ?>images/calendar.png" alt="" class="end_date">
-                  </p>               
-                  <div>
-                    <input name="action" type="submit" class="btn4" value="Search" />
-                  </div>
-                  <div class="cb"></div>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                        <?php
+                                        //echo "<pre>";
+                                        //print_r($res);die;
+                                        $i = 1;
+                                        foreach ($res as $val) {
+                                            $total = $val['total_amount'];
+                                            $discount_total = $val['coupon_discount_amount'];
+                                            $shipping_total = $val['shipping_amount'];
+                                            $cod_total = $val['cod_amount'];
+                                            $tax = $val['vat_amount'];
+                                        $grand_total = ($total - $discount_total) + $shipping_total + $tax + $cod_total;
+                                            ?> 
+                
+                                    <tr class="cart_table_item">
+
+                                        <td class="product-thumbnail">
+                                            <?php echo $val['invoice_number']; ?>
+                                        </td>
+                                        <td class="product-name">
+                                            <?php echo $val['order_status']; ?>
+                                        </td>
+                                        <td class="product-price">
+                                            <span class="amount"><?php echo $val['total_amount']; ?></span>
+                                        </td>
+                                        <td class="product-quantity">
+
+                                            <div class="quantity">
+                                               <?php echo $val['payment_status']; ?>
+                                            </div>
+
+                                        </td>
+                                        <td class="product-subtotal">
+                                            <?php echo $val['order_received_date']; ?>
+                                        </td>
+
+                                    </tr>
+                                        <?php } ?>
+                                   
+                                </tbody>
+                            </table>
+
+                        </form></div>
                 </div>
-                <?php
-								if( is_array($res) && !empty($res)){
-									?>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+
+    <!--div class="mob_hider"></div>
+
+
+<div class="breadcrumbs mob_hider">
+<div class="wrapper">
+  <p class="ml5">YOU ARE HERE : <a href="<?php echo base_url(); ?>"><img src="<?php echo theme_url(); ?>images/hm.png" class="vam pb3" alt=""></a> <b>&gt;</b> <a href="<?php echo base_url(); ?>members/myaccount">My Account</a> <b>&gt;</b> <strong>Order History</strong></p>
+</div>
+</div>
+
+<section class="wrapper pt30" style="min-height:450px">
+<div class="inner_wrapper">
+  <h1 class="mb5">Order History</h1>
+  <ul class="emp_acc_link">
+    <li><a href="<?php echo base_url(); ?>members/myaccount">My Home</a></li>
+    <li><a href="<?php echo base_url(); ?>members/orders_history" class="act">Order History</a></li>
+    <li><a href="<?php echo base_url(); ?>members/members/manage_addresses">My Addresses</a></li>
+    <li><a href="<?php echo base_url(); ?>members/subscriptions">My Subscriptions</a></li>
+    <li><a href="<?php echo base_url(); ?>members/edit_account">Manage Account</a></li>
+    </ul>
+  <div class="cb"></div>
+  <div class="mt2">
+    <div>
+      <div class="p1 pt2 bg-white">
+        <div class="p15 bg-gray border1 acc_title">
+            <img src="<?php echo theme_url(); ?>images/user.png" width="42" height="43" class="fl mr10" alt="">
+            <p class="fs18 ttu b black">
+            Welcome <?php echo ($this->fname != '' || $this->fname != 0) ? $this->fname : 'Member'; ?>!
+          </p>
+            <p class="mt5">Last Login : <?php echo getDateFormat($this->last_login, 6); ?>/ <span class="red"><a href="<?php echo base_url(); ?>users/logout" class="underline"><img src="<?php echo theme_url(); ?>images/lgt.png" width="17" height="17" class="vam mr5" alt="">Logout!</a></span></p>
+        </div>            
+        
+        <br />
+        <br />            
+        <div class="acc_mid_boxes">
+            <script type="text/javascript">function serialize_form() { return $('#ord_frm').serialize(); } </script>
+    <?php
+    echo form_open(base_url() . "members/orders_history", 'id="ord_frm"');
+    error_message();
+    ?>
+            <div class="bg-gray border1 p10 pl15 acc_odh_filter">
+              <p>
+                <input name="order_id" id="order_id" value="" type="text" class="p5" placeholder="Order/Invoice No.">
+              </p>
+              <p>
+                <input name="start_date" id="start_date" type="text" readonly="readonly" class="p5 vam start_date1" placeholder="From">
+                <img src="<?php echo theme_url(); ?>images/calendar.png" alt="" class="start_date"></p>
+              <p>
+                <input name="end_date" id="end_date" type="text" readonly="readonly" class="p5 vam end_date1" placeholder="To">
+                <img src="<?php echo theme_url(); ?>images/calendar.png" alt="" class="end_date">
+              </p>               
+              <div>
+                <input name="action" type="submit" class="btn4" value="Search" />
+              </div>
+              <div class="cb"></div>
+            </div>
+    <?php
+    if (is_array($res) && !empty($res)) {
+        ?>
                   <div id="my_data">
                     <div class="paging_container mt2">
                       <div class="one">Showing :
-                        <?php echo front_record_per_page('per_page1'); ?>
+        <?php echo front_record_per_page('per_page1'); ?>
                       </div>
-                      <div class="two paging"><?php echo $page_links;?></div>
+                      <div class="two paging"><?php echo $page_links; ?></div>
                       <div class="cb"></div>
                     </div>                
                     <div class="mt10">                    
@@ -221,143 +178,143 @@ $posted_start_date = $this->input->post('start_date');
                         <div class="sec4">View</div>
                         <div class="cb"></div>
                       </div>
-              				<?php
-											$i=1;
-											foreach($res as $val){
-												$total           	=  $val['total_amount'];
-												$discount_total  	=  $val['coupon_discount_amount'];
-												$shipping_total  	=  $val['shipping_amount'];
-												$cod_total  			=  $val['cod_amount'];
-												$tax 							= $val['vat_amount'];
-												$grand_total      = ($total-$discount_total)+$shipping_total+$tax+$cod_total;			
-												?> 
-                        <div class="p15 bb cont_4_oh mt15">
-                          <div class="sec1"><strong>S. No.:</strong> <?php echo $i; ?>.</div>
-                          <div class="sec2">
-                            <strong>Order/Invoice No.</strong>
-                            <p class="black fs16">Order No.: <a href="<?php echo base_url(); ?>members/my_invoice/<?php echo $val['order_id']; ?>" class="uu" target="_blank"><?php echo $val['invoice_number']; ?></a></p>
-                            <p class="mt2">Paid Amount : <b class="black"><?php echo display_price($total); ?></b>, Dated : <?php echo getDateFormat($val['order_received_date'],2); ?></p>
-                          </div>
-                          <div class="sec3">
-                            <strong>Shipping Details</strong>
-                            <p class="lht-18">Status : <b class="green"><?php echo $val['order_status'];?></b></p>
-                            <?php
-														//echo $val['courier_company_id'];
-														if($val['courier_company_id']!=''){
-															//echo "SELECT company_name FROM tbl_courier_company WHERE status = '1' AND company_id = '".$val['courier_company_id']."'";
-															$comp_name = $this->db->query("SELECT company_name FROM tbl_courier_company WHERE status = '1' AND company_id = '".$val['courier_company_id']."'")->row_array();
-															//trace($comp_name);
-															if(!empty($comp_name)){
-																?>
-  	                          	<p class="mt10 i">Courier Info</p>
-    	                          <p class="verd b black"><?php echo $comp_name['company_name']; ?></p>
-                              	<?php
-															}
-														}
-														if($val['tracking_code']!=''){
-															?>
-                            	<p>Reference No. <?php echo $val['tracking_code']; ?></p>
-                              <?php
-														}
-														?>
-                          </div>
-                          <div class="sec4">
-                          <a href="<?php echo base_url(); ?>members/my_invoice/<?php echo $val['order_id']; ?>" target="_blank" class=""><strong>View : </strong> <img src="<?php echo theme_url(); ?>images/vie.png" class="vam" alt=""></a>
-                          </div>
-                          <div class="cb"></div>
-                        </div>     
-                      	<!-- list 1 --> 
-                        	<!--
-                        <?php
-												$i++;
-											}
-											?>                             
-                    </div>                                
-                    <div class="paging_container">
-                      <div class="one">Showing :
-                        <?php echo front_record_per_page('per_page2'); ?>
-                      </div>
-                      <div class="two paging"><?php echo $page_links;?></div>
-                      <div class="cb"></div>
-                    </div>
-                  </div>
-                  <!--<input type="hidden" name="page_num" value="<?php echo $i; ?>" />-->
-                  <?php
-								}
-							echo form_close();		
-							?>	<!--
-            </div>
-            <br>
-          </div>
-        </div>
-      </div>
-      <div class="cb"></div>
+        <?php
+        $i = 1;
+        foreach ($res as $val) {
+            $total = $val['total_amount'];
+            $discount_total = $val['coupon_discount_amount'];
+            $shipping_total = $val['shipping_amount'];
+            $cod_total = $val['cod_amount'];
+            $tax = $val['vat_amount'];
+            $grand_total = ($total - $discount_total) + $shipping_total + $tax + $cod_total;
+            ?> 
+                            <div class="p15 bb cont_4_oh mt15">
+                              <div class="sec1"><strong>S. No.:</strong> <?php echo $i; ?>.</div>
+                              <div class="sec2">
+                                <strong>Order/Invoice No.</strong>
+                                <p class="black fs16">Order No.: <a href="<?php echo base_url(); ?>members/my_invoice/<?php echo $val['order_id']; ?>" class="uu" target="_blank"><?php echo $val['invoice_number']; ?></a></p>
+                                <p class="mt2">Paid Amount : <b class="black"><?php echo display_price($total); ?></b>, Dated : <?php echo getDateFormat($val['order_received_date'], 2); ?></p>
+                              </div>
+                              <div class="sec3">
+                                <strong>Shipping Details</strong>
+                                <p class="lht-18">Status : <b class="green"><?php echo $val['order_status']; ?></b></p>
+            <?php
+            //echo $val['courier_company_id'];
+            if ($val['courier_company_id'] != '') {
+                //echo "SELECT company_name FROM tbl_courier_company WHERE status = '1' AND company_id = '".$val['courier_company_id']."'";
+                $comp_name = $this->db->query("SELECT company_name FROM tbl_courier_company WHERE status = '1' AND company_id = '" . $val['courier_company_id'] . "'")->row_array();
+                //trace($comp_name);
+                if (!empty($comp_name)) {
+                    ?>
+                                                    <p class="mt10 i">Courier Info</p>
+                                              <p class="verd b black"><?php echo $comp_name['company_name']; ?></p>
+                    <?php
+                }
+            }
+            if ($val['tracking_code'] != '') {
+                ?>
+                                        <p>Reference No. <?php echo $val['tracking_code']; ?></p>
+                <?php
+            }
+            ?>
+                              </div>
+                              <div class="sec4">
+                              <a href="<?php echo base_url(); ?>members/my_invoice/<?php echo $val['order_id']; ?>" target="_blank" class=""><strong>View : </strong> <img src="<?php echo theme_url(); ?>images/vie.png" class="vam" alt=""></a>
+                              </div>
+                              <div class="cb"></div>
+                            </div>     
+            <!-- list 1 --> 
+            <!--
+            <?php
+            $i++;
+        }
+        ?>                             
+    </div>                                
+    <div class="paging_container">
+    <div class="one">Showing :
+        <?php echo front_record_per_page('per_page2'); ?>
     </div>
-  </section>	
-  <section class="wrapper pt15  bt1 mid_banner_cont">
-  	
-	  <div class="cb"></div>
-	</section>
-	<script type="text/javascript" src="<?php echo base_url();?>assets/developers/js/ui/jquery-ui-1.8.16.custom.min.js"></script>
-	<link type="text/css" href="<?php echo base_url();?>assets/developers/js/ui/themes/ui-lightness/jquery-ui-1.8.16.custom.css" rel="stylesheet" /-->
-      
-	<script type="text/javascript">
-   jQuery(document).ready(function(){
-		 
-		 jQuery('[id ^="per_page"]').live('change',function(){
-			 	$("[id ^='per_page'] option[value=" + jQuery(this).val() + "]").attr('selected', 'selected'); 
-				//jQuery("input[name='per_page']","#ord_frm").val($(this).val());
-				$('#ord_frm').submit();
-			});	
-		 
-			jQuery('.start_date,.end_date').live('click',function(e){
-	  		e.preventDefault();
-	  		cls = $(this).hasClass('start_date') ? 'start_date1' : 'end_date1';
-	  		jQuery('.'+cls+':eq(0)').focus();
-				jQuery('.'+cls+':eq(0)').focus();
-			});
-			jQuery( ".start_date1").live('focus',function(){
-					jQuery(this).datepicker({
-					showOn: "focus",
-					dateFormat: 'yy-mm-dd',
-					changeMonth: true,
-					changeYear: true,
-					defaultDate: 'y',
-					buttonText:'',
-					minDate:'<?php echo $default_date;?>' ,
-					maxDate:'<?php echo date('Y-m-d',strtotime(date('Y-m-d',time())."+180 days"));?>',
-					yearRange: "c-100:c+100",
-					buttonImageOnly: true,
-					onSelect: function(dateText, inst) {
-									jQuery('.start_date1').val(dateText);
-									jQuery( ".end_date1").datepicker("option",{
-									minDate:dateText ,
-									maxDate:'<?php echo date('Y-m-d',strtotime(date('Y-m-d',time())."+180 days"));?>',
-								});
-		
-								}
-				});
-			});
-			jQuery( ".end_date1").live('focus',function(){
-					jQuery(this).datepicker({
-								showOn: "focus",
-								dateFormat: 'yy-mm-dd',
-								changeMonth: true,
-								changeYear: true,
-								defaultDate: 'y',
-								buttonText:'',
-								minDate:'<?php echo $posted_start_date!='' ? $posted_start_date :  $default_date;?>' ,
-								maxDate:'<?php echo date('Y-m-d',strtotime(date('Y-m-d',time())."+180 days"));?>',
-								yearRange: "c-100:c+100",
-								buttonImageOnly: true,
-								onSelect: function(dateText, inst) {
-								jQuery('.end_date1').val(dateText);
-								}
-							});
-				});
-				
-			});
-		
-		
-</script>
-<?php $this->load->view("bottom_application");?>
+    <div class="two paging"><?php echo $page_links; ?></div>
+    <div class="cb"></div>
+    </div>
+    </div>
+    <!--<input type="hidden" name="page_num" value="<?php echo $i; ?>" />-->
+        <?php
+    }
+    echo form_close();
+    ?>	<!--
+</div>
+<br>
+</div>
+</div>
+</div>
+<div class="cb"></div>
+</div>
+</section>	
+<section class="wrapper pt15  bt1 mid_banner_cont">
+
+<div class="cb"></div>
+</section>
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/developers/js/ui/jquery-ui-1.8.16.custom.min.js"></script>
+<link type="text/css" href="<?php echo base_url(); ?>assets/developers/js/ui/themes/ui-lightness/jquery-ui-1.8.16.custom.css" rel="stylesheet" /-->
+
+    <script type="text/javascript">
+        jQuery(document).ready(function () {
+
+            jQuery('[id ^="per_page"]').live('change', function () {
+                $("[id ^='per_page'] option[value=" + jQuery(this).val() + "]").attr('selected', 'selected');
+                //jQuery("input[name='per_page']","#ord_frm").val($(this).val());
+                $('#ord_frm').submit();
+            });
+
+            jQuery('.start_date,.end_date').live('click', function (e) {
+                e.preventDefault();
+                cls = $(this).hasClass('start_date') ? 'start_date1' : 'end_date1';
+                jQuery('.' + cls + ':eq(0)').focus();
+                jQuery('.' + cls + ':eq(0)').focus();
+            });
+            jQuery(".start_date1").live('focus', function () {
+                jQuery(this).datepicker({
+                    showOn: "focus",
+                    dateFormat: 'yy-mm-dd',
+                    changeMonth: true,
+                    changeYear: true,
+                    defaultDate: 'y',
+                    buttonText: '',
+                    minDate: '<?php echo $default_date; ?>',
+                    maxDate: '<?php echo date('Y-m-d', strtotime(date('Y-m-d', time()) . "+180 days")); ?>',
+                    yearRange: "c-100:c+100",
+                    buttonImageOnly: true,
+                    onSelect: function (dateText, inst) {
+                        jQuery('.start_date1').val(dateText);
+                        jQuery(".end_date1").datepicker("option", {
+                            minDate: dateText,
+                            maxDate: '<?php echo date('Y-m-d', strtotime(date('Y-m-d', time()) . "+180 days")); ?>',
+                        });
+
+                    }
+                });
+            });
+            jQuery(".end_date1").live('focus', function () {
+                jQuery(this).datepicker({
+                    showOn: "focus",
+                    dateFormat: 'yy-mm-dd',
+                    changeMonth: true,
+                    changeYear: true,
+                    defaultDate: 'y',
+                    buttonText: '',
+                    minDate: '<?php echo $posted_start_date != '' ? $posted_start_date : $default_date; ?>',
+                    maxDate: '<?php echo date('Y-m-d', strtotime(date('Y-m-d', time()) . "+180 days")); ?>',
+                    yearRange: "c-100:c+100",
+                    buttonImageOnly: true,
+                    onSelect: function (dateText, inst) {
+                        jQuery('.end_date1').val(dateText);
+                    }
+                });
+            });
+
+        });
+
+
+    </script>
+    <?php $this->load->view("bottom_application"); ?>

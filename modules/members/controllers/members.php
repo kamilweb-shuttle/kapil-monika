@@ -30,7 +30,7 @@ class Members extends Private_Controller {
 
         $data['page_content'] = get_db_field_value('wl_cms_pages', 'page_description', array('friendly_url' => 'my-account', 'status' => 1));
         $data['member_account'] = $this->members_model->get_member_row($this->session->userdata('user_id'));
-        $data['res_add'] = $this->db->query("select * from wl_customers_address_book where address_id='" . $this->session->userdata('user_id') . "'")->row_array();
+        $data['res_add'] = $this->db->query("select * from wl_customers_address_book where customer_id='" . $this->session->userdata('user_id') . "'")->row_array();
         $data['order'] = $res_array;
         $data['unq_section'] = "Myaccount";
         $data['title'] = "My Account";

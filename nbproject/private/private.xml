@@ -12,22 +12,12 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/wamp/www/kapil/modules/pages/controllers/pages.php</file>
-            <file>file:/C:/wamp/www/kapil/modules/members/views/view_member_orders.php</file>
-            <file>file:/C:/wamp/www/kapil/apps/views/bottom_application.php</file>
-            <file>file:/C:/wamp/www/kapil/modules/members/controllers/members.php</file>
-            <file>file:/C:/wamp/www/kapil/modules/cart/views/view_cart_detail.php</file>
-            <file>file:/C:/wamp/www/kapil/modules/members/views/view_member_myaccount.php</file>
-            <file>file:/C:/wamp/www/kapil/apps/config/application.php</file>
-            <file>file:/C:/wamp/www/kapil/apps/libraries/Dmailer.php</file>
-            <file>file:/C:/wamp/www/kapil/modules/users/models/users_model.php</file>
-            <file>file:/C:/wamp/www/kapil/apps/views/top_menu.php</file>
-            <file>file:/C:/wamp/www/kapil/modules/users/controllers/users.php</file>
-            <file>file:/C:/wamp/www/kapil/modules/cart/views/view_my_cart.php</file>
-            <file>file:/C:/wamp/www/kapil/apps/libraries/mailer.php</file>
-            <file>file:/C:/wamp/www/kapil/modules/products/controllers/products.php</file>
-            <file>file:/C:/wamp/www/kapil/modules/cart/controllers/cart.php</file>
-            <file>file:/C:/wamp/www/kapil/modules/products/views/view_product_details.php</file>
+            <file>file:/C:/wamp/www/kapil-monika/modules/cart/controllers/cart.php</file>
+            <file>file:/C:/wamp/www/kapil-monika/modules/members/views/view_member_myaccount.php</file>
+            <file>file:/C:/wamp/www/kapil-monika/modules/members/controllers/members.php</file>
+            <file>file:/C:/wamp/www/kapil-monika/modules/members/models/members_model.php</file>
+            <file>file:/C:/wamp/www/kapil-monika/apps/views/bottom_application.php</file>
+            <file>file:/C:/wamp/www/kapil-monika/modules/users/controllers/users.php</file>
         </group>
     </open-files>
 </project-private>

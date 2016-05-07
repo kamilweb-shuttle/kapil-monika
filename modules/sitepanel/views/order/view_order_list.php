@@ -72,7 +72,7 @@
                   <td width="189" class="left">Invoice Number</td>
                   <td width="214" class="left">Payment Status</td>
                   <td width="144" class="left">Order Status</td>
-                  <td width="150" class="left">Tracking Details</td>
+                
                 </tr>
 							</thead>
 							<tbody>
@@ -119,20 +119,7 @@
                       <br /><br />
                       <strong>Order Date : </strong><?php  echo getDateFormat($pageVal['order_received_date'],2); ?>
                     </td>
-					          <td class="left">
-					          	<a href="orders/tracking_details/<?php echo $pageVal['order_id']; ?>" class="track_list"><strong>Tracking Details</strong></a><br /><br />
-                      <?php
-											if($pageVal['courier_company_id']!='' && $pageVal['courier_company_id']!='NULL'){
-	        					  	$comp_name = $this->db->query("SELECT company_name FROM tbl_courier_company WHERE status =  '1' AND company_id = '".$pageVal['courier_company_id']."'")->row_array();
-												if(!empty($comp_name)){
-													echo '<b style="color:#D90000">Courier Company Name</b> <b>: '.$comp_name['company_name'].'</b>';
-												}
-											}
-											else{
-												echo "<b>Courier Company Not Assigned</b>";
-											}
-											?>
-					          </td>
+					      
 									</tr>
 									<?php
 								}		   
@@ -167,16 +154,7 @@
                     <option value="Closed">Closed</option>
                     <option value="Pending">Pending</option>					 
                   </select>
-			            <select name="courier_status"  onchange="return onclickgroup()">
-      			      	<option value="">---Select Courier Company---</option>
-            			  <?php
-										foreach($result as $key=>$val){
-											?>
-            			    <option value="<?php echo $val['company_id']; ?>"><?php echo $val['company_name']; ?></option>
-			                <?php
-										}
-										?>					 
-						      </select>
+			         
 				        </td>
 							</tr>
 						</table>

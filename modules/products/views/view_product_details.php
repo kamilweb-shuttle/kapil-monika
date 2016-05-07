@@ -108,15 +108,16 @@
 
                 
                     <div class="quantity pull-left">
-                        <input type="button" class="minus" value="-">
-                        <input type="text" class="input-text qty" title="Qty" value="1" name="quantity" min="1" step="1">
-                        <input type="button" class="plus" value="+">
+                        <input class="minus_qty" type="button" class="minus" value="-">
+                        <input type="text" class="input-text qty" title="Qty" value="1" name="quantity" min="1" step="1" id="prod_qty">
+                        <input class="plus_qty" type="button" class="plus" value="+">
+                        
                     </div>
                     <a href="#" class="btn btn-grey">
                         <span><i class="fa fa-heart"></i></span>
                     </a>
                   <input type="hidden" name="product_cart_id" value="<?php echo $res['products_id'] ?>" />
-                    <input type="hidden" name="qty" id="qty" value="1" />
+                    <input type="hidden" id="qty_prod" name="qty" id="qty" value="1" />
                     <input type="hidden" name="avlqty" id="avlqty" value="<?php echo abs($res['product_qty']); ?>" />
                     
                        <?php if($res['product_qty']<=0){ ?>   
@@ -212,22 +213,31 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <!--content section-->
 <?php $this->load->view("bottom_application"); ?>
+
+<script>
+$(".minus_qty").click(function(){
+  var qty=parseInt($("#prod_qty").val());
+ 
+  if(qty <= 1){
+      //do nothing
+  }else{
+      qty=qty-1;
+      $("#prod_qty").val(qty);
+     $("#qty_prod").val(qty);
+      
+  }
+});
+$(".plus_qty").click(function(){
+  var qty=parseInt($("#prod_qty").val());
+  var avail_qty=$("#avlqty").val();
+  if(qty >= avail_qty){
+      //do nothing
+  }else{
+      qty=qty+1;
+      $("#prod_qty").val(qty);
+      $("#qty_prod").val(qty);
+  }
+});
+</script>

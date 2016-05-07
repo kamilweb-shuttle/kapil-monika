@@ -152,7 +152,7 @@ function invoice_content_print ($ordmaster,$orddetail )
       <tr>
         <td align="left">
         	<p style="padding-top:2px; margin:0px; color:#333; line-height:18px;">
-        		<strong>TELEPOINT</strong><br>
+        		<strong>Kapil Monika</strong><br>
         		<?php echo nl2br($admin_email->address); ?><br>
         		<span class="pt3">Email Us : <b class="red"><a href="#"><?php echo $admin_email->admin_email; ?></a></b></span> Phone : <?php echo $admin_email->phone; ?> 
       		</p>

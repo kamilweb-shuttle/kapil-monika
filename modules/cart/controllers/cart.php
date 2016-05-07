@@ -216,6 +216,31 @@ class Cart extends Public_Controller
     }
   }
   
+  public function checkout_user(){
+      
+      $data['user_add']=$this->db->query("select * from wl_customers_address_book where customer_id='".$this->session->userdata('user_id')."' ")->row_array();
+       $this->form_validation->set_rules('check_email', 'Email ID', 'trim|required|valid_email|max_length[80]');
+        $this->form_validation->set_rules('check_name', 'First Name', 'trim|required|alpha|max_length[32]|xss_clean');
+        $this->form_validation->set_rules('check_mobile', 'Mobile No', 'trim|required|numeric|max_length[10]|xss_clean');
+        $this->form_validation->set_rules('check_state', 'State', 'trim|required|max_length[30]');
+        $this->form_validation->set_rules('check_country', 'Country', 'trim|required|max_length[32]|xss_clean');
+        $this->form_validation->set_rules('check_city', 'City', 'trim|required|max_length[30]|xss_clean');
+        $this->form_validation->set_rules('check_address', 'Address', 'trim|required|max_length[80]');
+        $this->form_validation->set_rules('check_zipcode', 'Zipcode', 'trim|required|numeric|max_length[32]|xss_clean');
+
+        if ($this->form_validation->run() == TRUE) {
+            	$this->add_customer_order($this->input->post(),$is_same_bill_ship='Y');
+                   redirect('home');
+        
+      
+      
+        }
+      $this->load->view('checkout_user',$data);
+  
+  
+  } 
+  
+  
 	public function delivery_info(){
 		if ( !$this->cart->total_items() > 0 ){
 			redirect('category');	
@@ -351,41 +376,41 @@ class Cart extends Public_Controller
 			
 			$tax = ($cart_total*$tax_cent)/100;
 			if($is_same_bill_ship=='Y'){
-				$costumer_data['shipping_name']    = $costumer_data['name'];
-				$costumer_data['shipping_address'] = $costumer_data['address'];
-				$costumer_data['shipping_landmark']= $costumer_data['landmark'];
-				$costumer_data['shipping_mobile']  = $costumer_data['mobile'];
-				$costumer_data['shipping_phone']   = $costumer_data['phone'];
-				$costumer_data['shipping_zipcode'] = $costumer_data['zipcode'];
-				$costumer_data['shipping_country'] = $costumer_data['country'];
-				$costumer_data['shipping_state']   = $costumer_data['state'] ;
-				$costumer_data['shipping_city']    = $costumer_data['city'];
+				$costumer_data['shipping_name']    = $costumer_data['check_name'];
+				$costumer_data['shipping_address'] = $costumer_data['check_address'];
+				$costumer_data['shipping_landmark']= $costumer_data['check_landmark'];
+				$costumer_data['shipping_mobile']  = $costumer_data['check_mobile'];
+				$costumer_data['shipping_phone']   = $costumer_data['check_mobile'];
+				$costumer_data['shipping_zipcode'] = $costumer_data['check_zipcode'];
+				$costumer_data['shipping_country'] = $costumer_data['check_country'];
+				$costumer_data['shipping_state']   = $costumer_data['check_state'] ;
+				$costumer_data['shipping_city']    = $costumer_data['check_city'];
 			}
 			$data_order = array(
 				'customers_id'        => $customers_id,
 				'invoice_number'      => $invoice_number,					
-				'first_name'          => $costumer_data['name'],
+				'first_name'          => $costumer_data['check_name'],
 				'last_name'           => '',
 				'email'               => $this->session->userdata('username'),					
-				'billing_name'        => $costumer_data['name'],
-				'billing_address'     => $costumer_data['address'],					
-				'billing_phone'       => $costumer_data['phone'],					
-				'billing_zipcode'     => $costumer_data['zipcode'],
-				'billing_country'     => $costumer_data['country'],
-				'billing_state'       => $costumer_data['state'],
-				'billing_city'        => $costumer_data['city'],					
-				'shipping_name'       => $costumer_data['name'],
-				'shipping_address'    => $costumer_data['address'],					
-				'shipping_phone'      => $costumer_data['phone'],					
-				'shipping_zipcode'    => $costumer_data['zipcode'],
-				'shipping_country'    => $costumer_data['country'],
-				'shipping_state'      => $costumer_data['state'],
-				'shipping_city'       => $costumer_data['city'],						
+				'billing_name'        => $costumer_data['check_name'],
+				'billing_address'     => $costumer_data['check_address'],					
+				'billing_phone'       => $costumer_data['check_mobile'],					
+				'billing_zipcode'     => $costumer_data['check_zipcode'],
+				'billing_country'     => $costumer_data['check_country'],
+				'billing_state'       => $costumer_data['check_state'],
+				'billing_city'        => $costumer_data['check_city'],					
+				'shipping_name'       => $costumer_data['check_name'],
+				'shipping_address'    => $costumer_data['check_address'],					
+				'shipping_phone'      => $costumer_data['check_mobile'],					
+				'shipping_zipcode'    => $costumer_data['check_zipcode'],
+				'shipping_country'    => $costumer_data['check_country'],
+				'shipping_state'      => $costumer_data['check_state'],
+				'shipping_city'       => $costumer_data['check_city'],						
 				'shipping_method'     => $ship_method,
 				'discount_coupon_id'  => $coupon_id,
 				'coupon_discount_amount'=>$discount_amount,
 				'shipping_amount'     => $ship_amount,
-				'cod_amount'     			=> $costumer_data['cod_amount'],
+				'cod_amount'     			=> $cart_total,
 				'total_amount'        => $cart_total,
 				'vat_amount'					=> $tax,
 				'vat_applied_cent'		=> $tax_cent,
@@ -393,7 +418,7 @@ class Cart extends Public_Controller
 				'currency_value'      => $currency_value,				
 				'order_status'        => 'Pending',
 				'order_received_date' => $this->config->item('config.date.time'),
-				'payment_method'      => '',
+				'payment_method'      => 'COD',
 				'payment_status'      => 'Unpaid'
 			);
 			//trace($data_order);
@@ -410,7 +435,7 @@ class Cart extends Public_Controller
 
 					$file_data   = ( file_exists($image_file) ) ?  file_get_contents($image_file) : file_get_contents($default_no_img);
 
-					if($items['options']['Color']>0){		
+					/*if($items['options']['Color']>0){		
 						$color_id = $items['options']['Color'];
 						$product_color = 	color_name($color_id);
 					}
@@ -425,17 +450,17 @@ class Cart extends Public_Controller
 					}
 					else{
 						$product_size = 	"";
-					}
+					}*/
 					
 					$data = array(
 						'order_id'       		=> $orderId,							
 						'products_id'    		=> $items['pid'],
 						'product_name'   		=> $items['origname'],
-						'product_brand'  		=> $product_brand,
-						'product_color'  		=> $product_color,
-						'product_size'   		=> $product_size,
-						'product_color_id'  => $color_id,
-						'product_size_id'   => $size_id,
+						//'product_brand'  		=> $product_brand,
+						//'product_color'  		=> $product_color,
+						//'product_size'   		=> $product_size,
+						//'product_color_id'  => $color_id,
+						//'product_size_id'   => $size_id,
 						'product_code'   		=> $items['code'],
 						'product_image'  		=> $file_data,							
 						'product_price'  		=> $items['price'],						
@@ -463,7 +488,7 @@ class Cart extends Public_Controller
 				$this->cart->destroy();
 				$data = array('shipping_id' => 0,'coupon_id'=>0,'discount_amount'=>0,'posted_data'=>0,'is_same_bill_ship'=>0);
 				$this->session->unset_userdata($data);
-				// redirect('cart/invoice','');
+				
 			}		
 		}
 	}
@@ -593,6 +618,7 @@ class Cart extends Public_Controller
 
     public function add_to_cart()
     {		
+       
          $this->add_cart();			
     }
 
@@ -747,9 +773,12 @@ class Cart extends Public_Controller
 
 	public function update_cart_qty(){
 		$cart = $this->cart->contents();
+                
 		for($i=1; $i<=count($cart); $i++){
+                    
 			$item = $this->input->post($i);
 			$cart_id = $item['rowid'];
+                        $cart[$cart_id]['availableqty'];die;
 			if($item['qty'] <= 0){
 				$res = array('error_type'=>'error','error_msg'=>"Can not update less then 0"); 
 			}
@@ -759,7 +788,7 @@ class Cart extends Public_Controller
 					'qty' => $item['qty']
         );
 				$this->cart->update($data);
-				//  $this->session->set_userdata(array('msg_type'=>'success'));
+				//  $this->session->set_userdata(array('msg_type'=>'uccess'));
         //  $this->session->set_flashdata('success',$this->config->item('cart_quantity_update'));
         $res = array('error_type'=>'pass','error_msg'=>$this->config->item('cart_quantity_update'));
       }

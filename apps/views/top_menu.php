@@ -63,12 +63,12 @@
                             <div class="product-thumb-info">
                                 <a href="#" class="product-remove"><i class="fa fa-trash-o"></i></a>
                                 <div class="product-thumb-info-image">
-                                    <a href="<?php echo $link_url; ?>"><img alt="" width="60" src="<?php echo base_url(); ?>/assets/designer/images/content/products/product-2.jpg"></a>
+                                    <a href="<?php echo $link_url; ?>"><img alt="" width="60" src="<?php echo get_image('products', $items['img'], '100', '80', 'R'); ?>"></a>
                                 </div>
                                 <div class="product-thumb-info-content">
                                     <h4><a href="shop-product-detail1.html"><?php echo $items['origname']; ?></a></h4>
                                     <span class="item-cat"><small><a href="#"></a></small></span>
-                                    <span class="price">  <?php 
+                                    <span class="price">(<?php  echo $items['qty'] ?> Items )  <?php 
                                         if ($items['discount_price'] > 0) {
                                             echo display_price($items['discount_price']); 
                                         }else{
@@ -96,8 +96,8 @@
                         <li class="price"><span class="amount"><strong><?php echo display_price($grand_total); ?></strong></span></li>
                     </ul>
                     <div class="cart-buttons text-right">
-                        <a href="shop-cart-sidebar.html" class="btn btn-white">View Cart</a>
-                        <a href="shop-checkout.html"class="btn btn-primary">Checkout</a>
+                        <a href="<?php echo site_url() ?>cart/" class="btn btn-white">View Cart</a>
+                        <a href="<?php echo site_url() ?>cart/checkout_user"class="btn btn-primary">Checkout</a>
                     </div>
                 </div>
             </li>

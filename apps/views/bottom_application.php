@@ -198,7 +198,13 @@
      
  }); 
     
-    
+ $(".add-to-cart-product").click(function(e){
+ e.preventDefault();
+ alert();
+ $.ajax({
+     
+ });
+ }) ;  
     
     
 </script>
