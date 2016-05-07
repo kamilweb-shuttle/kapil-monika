@@ -235,10 +235,13 @@
                               var prod_qty=$('.prod_qty').map(function() {
                                 return this.value;
                              }).get();
+                              var max_qty_avail=$('.max_qty_avail').map(function() {
+                                return this.value;
+                             }).get();
                           $.ajax({
                               type:"Post",
                               url:"<?php echo site_url(); ?>cart/update_cart_qty",
-                              data:{row_id:row_id,qty:prod_qty},
+                              data:{row_id:row_id,qty:prod_qty,max_qty:max_qty_avail},
                               success:function(msg){
                                   alert(msg);
                               },

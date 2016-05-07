@@ -773,19 +773,22 @@ class Cart extends Public_Controller
 
 	public function update_cart_qty(){
 		$cart = $this->cart->contents();
-                
-		for($i=1; $i<=count($cart); $i++){
+                //print_r($this->input->post());die;
+		$item=$this->input->post('row_id');
+                $qty=$this->input->post('qty');
+                 $avail_qty=$this->input->post('max_qty');
+                for($i=0; $i< count($cart); $i++){
                     
-			$item = $this->input->post($i);
-			$cart_id = $item['rowid'];
-                        $cart[$cart_id]['availableqty'];die;
-			if($item['qty'] <= 0){
+			//$item = $this->input->post($i);
+			//$cart_id = $item['rowid'];
+                        //$cart[$cart_id]['availableqty'];die;
+			if($qty[$i] <= 0){
 				$res = array('error_type'=>'error','error_msg'=>"Can not update less then 0"); 
 			}
-			elseif($cart[$cart_id]['availableqty'] >= $item['qty']){
+			elseif($avail_qty[$i] >= $qty[$i]){
 				$data = array(
-					'rowid' => $item['rowid'],
-					'qty' => $item['qty']
+					'rowid' => $item[$i],
+					'qty' => $qty[$i]
         );
 				$this->cart->update($data);
 				//  $this->session->set_userdata(array('msg_type'=>'uccess'));
@@ -799,9 +802,9 @@ class Cart extends Public_Controller
         $res = array('error_type'=>'error','error_msg'=>"Can not update more then available quantity");
       }
      	//redirect('cart','refresh');
+      echo json_encode($res);
     }
-		 echo json_encode($res);
-	}
+}
 
     public function count_cart_item()
     {
