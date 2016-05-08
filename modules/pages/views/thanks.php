@@ -3,11 +3,17 @@
   <div class="mob_hider"></div>
   <!-- HEADER ENDS -->
   
-  <div class="breadcrumbs mob_hider">
-    <div class="wrapper">
-      <p class="ml5">YOU ARE HERE : <a href="<?php echo base_url(); ?>"><img src="<?php echo theme_url(); ?>images/hm.png" class="vam pb3" alt=""></a> <b>&gt;</b> <strong>Thank You</strong></p>
+  <section class="page-breadcrumb">
+    <div class="container">
+
+        <ol class="breadcrumb">
+            <li><a href="#">Home</a></li>
+
+            <li class="active">Thanks</li>
+        </ol>
+
     </div>
-  </div>
+</section>
   
 <section class="wrapper" style="min-height:450px">
 	<div class="inner_wrapper pt20">
@@ -16,7 +22,7 @@
       	<div class="pr15">
 					<div class="ac">
 						<img src="<?php echo theme_url();?>images/thankyou.jpg" alt=""><br>
-						<p class="fs22 green pt10 text-shadow">Thank You! Sir/Madam.
+						<p class="fs22 green pt10 text-shadow">Your order Placed Successfully 
 							<span class="grey pt5 fs18 db lht-26"><?php echo error_message(); ?></span>
 					 	</p>
 				 	</div>

@@ -67,8 +67,9 @@ class Faq extends Admin_Controller
 		{			
 			$data['ckeditor']      =  set_ck_config(array('textarea_id'=>'faq_answer'));				
 			$data['heading_title'] = 'Add FAQ';			
-	        $this->form_validation->set_rules('faq_question','Question','trim|required|xss_clean|max_length[250]');
+	                  $this->form_validation->set_rules('faq_question','Question','trim|required|xss_clean|max_length[250]');
 			$this->form_validation->set_rules('faq_answer','Answer','trim|required|required_stripped|xss_clean|max_length[8500]');
+                        $this->form_validation->set_rules('faq_topic','Topic','trim|required|xss_clean|max_length[250]');
 			
 			if($this->form_validation->run()==TRUE)
 			{
@@ -76,6 +77,7 @@ class Faq extends Admin_Controller
 			      $posted_data = array(
 					'faq_question'=>$this->input->post('faq_question',TRUE),
 					'faq_answer'=>$this->input->post('faq_answer',TRUE),
+                                        'Topic'=>$this->input->post('faq_topic',TRUE),
 					'faq_date_added'=>$this->config->item('config.date.time')
 				 );
 				 				

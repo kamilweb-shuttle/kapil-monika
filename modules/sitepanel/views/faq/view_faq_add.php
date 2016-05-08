@@ -31,6 +31,16 @@
 		<tr>
 			<th colspan="2" align="center" > </th>
 		</tr>
+                <tr class="trOdd">
+			<td height="26">* <span class="left">Topic</span>:</td>
+                                <td>
+                                    <select name="faq_topic">
+                                        <option value="">Select Topic</option>
+                                         <option value="Payment">Payment</option>
+                                          <option value="Order">Order</option>
+                                    </select>
+                                </td>
+		</tr>
 		<tr class="trOdd">
 			<td height="26">* <span class="left">Question</span>:</td>
 			<td><input type="text" name="faq_question" size="40" value="<?php echo set_value('faq_question');?>"></td>

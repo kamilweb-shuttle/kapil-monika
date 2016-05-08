@@ -9,6 +9,7 @@ class Category extends Public_Controller
 	}
 	
 	public function index(){
+           
 		$category_id     = (int) $this->meta_info['entity_id'];		  
 		$have_sub_cat    = get_db_field_value('wl_categories','parent_id',"WHERE parent_id = '$category_id' ");
 		

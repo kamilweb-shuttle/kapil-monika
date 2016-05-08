@@ -12,6 +12,7 @@ class Products extends Public_Controller
 	}
 	
 	public function index(){
+            
 		$this->page_section_ct = 'product';
 		$condtion               = array();	
 		$cat_res = '';

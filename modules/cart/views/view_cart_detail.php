@@ -160,13 +160,13 @@
                                                                         </tr>
                                                                     </tbody>
                                                                 </table>
-                                                                <p><a href="javascript:void(0)" id="update_cart" class="btn btn-primary btn-block btn-sm" data-loading-text="Loading...">Update Cartss</a></p>
+                                                                <p><a href="javascript:void(0)" id="update_cart" class="btn btn-primary btn-block btn-sm" data-loading-text="Loading...">Update Shopping Bag</a></p>
                                                                   <?php if($this->session->userdata('user_id')!=''){ ?>
                                                                 <p><a href="<?php echo site_url() ?>cart/checkout_user" class="btn btn-primary btn-block btn-sm" data-loading-text="Loading...">Proceed for Checkout</a>
                                                                   <?php }else{ ?>
                                                                     <a href="javascript:void(0)" class="btn btn-primary btn-block btn-sm" data-loading-text="Loading...">Proceed for Checkout</a>
                                                                   <?php } ?>
-                                                                <p><input type="submit" value="Continue Shopping" class="btn btn-grey btn-block btn-sm" data-loading-text="Loading..."></p>
+                                                                <p><a href="<?php  echo site_url(); ?>" class="btn btn-primary btn-block btn-sm" >Continue Shopping</a></p>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -243,7 +243,7 @@
                               url:"<?php echo site_url(); ?>cart/update_cart_qty",
                               data:{row_id:row_id,qty:prod_qty,max_qty:max_qty_avail},
                               success:function(msg){
-                                  alert(msg);
+                                  location.reload();
                               },
                           });
                       }  );
