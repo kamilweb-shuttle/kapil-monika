@@ -299,6 +299,16 @@ class Pages extends Public_Controller
 		$data['heading_title'] = "Whowear";			
 		$this->load->view('pages/whowear',$data);	
 	}
+         public function terms_condition()
+	{
+		$data['heading_title'] = "Terms and Condition";			
+		$this->load->view('pages/terms',$data);	
+	}
+         public function privacy_policy()
+	{
+		$data['heading_title'] = "Privacy Policy";			
+		$this->load->view('pages/privacy_policy',$data);	
+	}
 	
          
         public function media()
