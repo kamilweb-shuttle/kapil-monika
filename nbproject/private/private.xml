@@ -13,11 +13,11 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/wamp/www/kapil-monika/modules/pages/controllers/pages.php</file>
-            <file>file:/C:/wamp/www/kapil-monika/modules/faq/views/view_faq.php</file>
-            <file>file:/C:/wamp/www/kapil-monika/modules/sitepanel/views/faq/view_faq_add.php</file>
             <file>file:/C:/wamp/www/kapil-monika/modules/pages/views/cms_page_view.php</file>
             <file>file:/C:/wamp/www/kapil-monika/modules/faq/controllers/faq.php</file>
-            <file>file:/C:/wamp/www/kapil-monika/modules/sitepanel/controllers/faq.php</file>
+            <file>file:/C:/wamp/www/kapil-monika/modules/pages/views/whowear.php</file>
+            <file>file:/C:/wamp/www/kapil-monika/modules/pages/views/terms.php</file>
+            <file>file:/C:/wamp/www/kapil-monika/modules/pages/views/privacy_policy.php</file>
         </group>
     </open-files>
 </project-private>
